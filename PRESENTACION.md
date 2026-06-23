@@ -3,8 +3,8 @@
 # UNIVERSIDAD CATÓLICA DE SANTA MARÍA
 # ESCUELA PROFESIONAL DE INGENIERÍA DE SISTEMAS
 
-Curso : Algoritmos y Estructuras de Datos
-Ingeniero : Oscar Javier Flores Gutierrez
+- Curso : Algoritmos y Estructuras de Datos
+- Ingeniero : Oscar Javier Flores Gutierrez
 
 # Integrantes:
 
