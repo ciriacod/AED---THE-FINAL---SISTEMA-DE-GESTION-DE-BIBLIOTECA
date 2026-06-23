@@ -1,23 +1,9 @@
-# AED---THE-FINAL---SISTEMA-DE-GESTION-DE-BIBLIOTECA
+# AED - QuickLibrary
 
-Proyecto Final de AED
+# REQUISITOS:
 
-Integrantes
+# PASOS DE INSTALACION:
 
-- Ayme
-- Hincho
-- Subia
-- Yepez
+# OPCIONES DE MENU:
 
-
-
-Roguemos, señores,
-la Reyna de Gloria,
-que tenga memoria
-de los peccadores,
-por cuyos errores
-meresció ser madre,
-con su Hijo y Padre
-sea medianera.
-Falalalanlera,
-de la guarda riera.
+# EJEMPLOS DE USO:
