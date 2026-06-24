@@ -1,3 +1,5 @@
+package estructuras;
+
 public class LinkedQueue<E>{
     private Node<E> first;
     private Node<E> last;

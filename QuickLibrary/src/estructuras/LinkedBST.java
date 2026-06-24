@@ -1,3 +1,5 @@
+package estructuras;
+
 public class LinkedBST<E extends Comparable<E>>{
 
     protected class Node<T> {

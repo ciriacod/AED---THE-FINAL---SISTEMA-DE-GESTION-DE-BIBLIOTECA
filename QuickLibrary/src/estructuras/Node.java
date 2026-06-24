@@ -1,3 +1,5 @@
+package estructuras;
+
 public class Node<T> {
     private T dato;
     public Node<T> next;
