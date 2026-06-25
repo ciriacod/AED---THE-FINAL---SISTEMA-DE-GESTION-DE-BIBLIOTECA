@@ -92,7 +92,7 @@ public class LinkedBST<E extends Comparable<E>>{
     private void inOrder(Node<E> node) {
         if (node != null) {
             inOrder(node.left);
-            System.out.print(node.data);
+            System.out.println(node.data + " ");
             inOrder(node.right);
         }
     }
