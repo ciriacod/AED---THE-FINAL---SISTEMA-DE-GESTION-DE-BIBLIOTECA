@@ -10,7 +10,7 @@ public class Solicitud {
         this.codigoEstudiante = codigoEstudiante;
         this.nombreEstudiante = nombreEstudiante;
         this.codigoLibro = codigoLibro;
-        this.fechaSolicitud = new Fecha();
+        this.fechaSolicitud = fechaSolicitud;
     }
 
     public String getCodigoEstudiante() {
