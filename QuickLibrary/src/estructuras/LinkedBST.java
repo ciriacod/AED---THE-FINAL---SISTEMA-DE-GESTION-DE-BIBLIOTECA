@@ -62,7 +62,7 @@ public class LinkedBST<E extends Comparable<E>>{
 
     public void delete(E x) {
         this.root = removeRec(x, this.root);
-    }
+    } 
 
     private Node<E> removeRec(E x, Node<E> node) {
         if (node == null) return null;
