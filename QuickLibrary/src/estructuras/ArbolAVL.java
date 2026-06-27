@@ -193,6 +193,25 @@ public class ArbolAVL<E extends Comparable<E>>{
         return altura(nodo.getIzquierdo()) - altura(nodo.getDerecho());
     }
 
+    public void inOrden() {
+
+        inOrden(raiz);
+
+        System.out.println();
+    }
+
+    private void inOrden(NodoAVL<E> nodo) {
+
+        if (nodo != null) {
+
+            inOrden(nodo.getIzquierdo());
+
+            System.out.println(nodo.getDato());
+
+            inOrden(nodo.getDerecho());
+        }
+    }
+
 
 
     
