@@ -1,14 +1,14 @@
 package controladores;
 
-import estructuras.LinkedBST;
+import estructuras.ArbolAVL;
 import estructuras.LinkedQueue;
 
 public class GestionBiblioteca {
-    private LinkedBST<Libro> catalogoLibros;
+    private ArbolAVL<Libro> catalogoLibros;
     private LinkedQueue<Solicitud> colaSolicitudes;
 
     public GestionBiblioteca() {
-        this.catalogoLibros = new LinkedBST<>();
+        this.catalogoLibros = new ArbolAVL<>();
         this.colaSolicitudes = new LinkedQueue<>();
     }
 

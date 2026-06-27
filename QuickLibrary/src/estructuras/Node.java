@@ -1,10 +1,10 @@
 package estructuras;
 
-public class NodeAVL<T> {
+public class Node<T> {
     private T dato;
-    public NodeAVL<T> next;
+    public Node<T> next;
 
-    public NodeAVL(T dato) {
+    public Node(T dato) {
         this.dato = dato;
         this.next = null;
     }
@@ -17,11 +17,11 @@ public class NodeAVL<T> {
         this.dato = dato;
     }
 
-    public NodeAVL<T> getNext(){
+    public Node<T> getNext(){
         return this.next;
     }
 
-    public void setNext(NodeAVL<T> nnext){
+    public void setNext(Node<T> nnext){
         this.next = nnext;
     }
     
