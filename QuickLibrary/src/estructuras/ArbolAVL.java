@@ -124,9 +124,7 @@ public class ArbolAVL<E extends Comparable<E>>{
 
             if (factorBalance(nodo.getIzquierdo()) < 0) {
 
-                nodo.setIzquierdo(
-                        rotacionIzquierda(
-                                nodo.getIzquierdo()));
+                nodo.setIzquierdo(rotacionIzquierda(nodo.getIzquierdo()));
             }
 
             return rotacionDerecha(nodo);
@@ -137,9 +135,7 @@ public class ArbolAVL<E extends Comparable<E>>{
 
             if (factorBalance(nodo.getDerecho()) > 0) {
 
-                nodo.setDerecho(
-                        rotacionDerecha(
-                                nodo.getDerecho()));
+                nodo.setDerecho(rotacionDerecha(nodo.getDerecho()));
             }
 
             return rotacionIzquierda(nodo);
@@ -147,6 +143,36 @@ public class ArbolAVL<E extends Comparable<E>>{
 
         return nodo;
     }
+
+    private NodoAVL<E> rotacionDerecha(NodoAVL<E> y) {
+
+        NodoAVL<E> x = y.getIzquierdo();
+        NodoAVL<E> t2 = x.getDerecho();
+
+        x.setDerecho(y);
+        y.setIzquierdo(t2);
+
+        actualizarAltura(y);
+        actualizarAltura(x);
+
+        return x;
+    }
+
+    private NodoAVL<E> rotacionIzquierda(NodoAVL<E> x) {
+
+        NodoAVL<E> y = x.getDerecho();
+        NodoAVL<E> t2 = y.getIzquierdo();
+
+        y.setIzquierdo(x);
+        x.setDerecho(t2);
+
+        actualizarAltura(x);
+        actualizarAltura(y);
+
+        return y;
+    }
+
+
 
     
     public NodoAVL<E> getRaiz() {
