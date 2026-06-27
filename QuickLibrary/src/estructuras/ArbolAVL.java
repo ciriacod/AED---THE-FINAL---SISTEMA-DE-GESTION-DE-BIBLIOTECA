@@ -185,6 +185,14 @@ public class ArbolAVL<E extends Comparable<E>>{
         nodo.setAltura(1 +Math.max(altura(nodo.getIzquierdo()),altura(nodo.getDerecho())));
     }
 
+    private int factorBalance(NodoAVL<E> nodo) {
+
+        if (nodo == null)
+            return 0;
+
+        return altura(nodo.getIzquierdo()) - altura(nodo.getDerecho());
+    }
+
 
 
     
