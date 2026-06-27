@@ -180,6 +180,11 @@ public class ArbolAVL<E extends Comparable<E>>{
         return nodo.getAltura();
     }
 
+    private void actualizarAltura(NodoAVL<E> nodo) {
+
+        nodo.setAltura(1 +Math.max(altura(nodo.getIzquierdo()),altura(nodo.getDerecho())));
+    }
+
 
 
     
