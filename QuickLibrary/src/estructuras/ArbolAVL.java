@@ -106,7 +106,7 @@ public class ArbolAVL<E extends Comparable<E>>{
     }
 
     //Obtiene el menor nodo
-    
+
     private NodoAVL<E> minimo(NodoAVL<E> nodo) {
 
         while (nodo.getIzquierdo() != null) 
@@ -115,9 +115,44 @@ public class ArbolAVL<E extends Comparable<E>>{
         return nodo;
     }
 
+    private NodoAVL<E> balancear(NodoAVL<E> nodo) {
+
+        int factor = factorBalance(nodo);
+
+        // Izquierda
+        if (factor > 1) {
+
+            if (factorBalance(nodo.getIzquierdo()) < 0) {
+
+                nodo.setIzquierdo(
+                        rotacionIzquierda(
+                                nodo.getIzquierdo()));
+            }
+
+            return rotacionDerecha(nodo);
+        }
+
+        // Derecha
+        if (factor < -1) {
+
+            if (factorBalance(nodo.getDerecho()) > 0) {
+
+                nodo.setDerecho(
+                        rotacionDerecha(
+                                nodo.getDerecho()));
+            }
+
+            return rotacionIzquierda(nodo);
+        }
+
+        return nodo;
+    }
+
     
     public NodoAVL<E> getRaiz() {
         return raiz;
     }
+
+    
 }
 
