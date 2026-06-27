@@ -3,7 +3,7 @@ package controladores;
 import estructuras.ArbolAVL;
 import estructuras.LinkedQueue;
 
-public class GestionBiblioteca {
+public class GestionBiblioteca_prueba {
     private ArbolAVL<Libro> catalogoLibros;
     private LinkedQueue<Solicitud> colaSolicitudes;
 
