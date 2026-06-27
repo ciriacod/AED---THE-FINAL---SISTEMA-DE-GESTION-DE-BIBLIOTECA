@@ -212,7 +212,7 @@ public class ArbolAVL<E extends Comparable<E>>{
         }
     }
 
-     public void preOrden() {
+    public void preOrden() {
 
         preOrden(raiz);
 
@@ -228,6 +228,25 @@ public class ArbolAVL<E extends Comparable<E>>{
             preOrden(nodo.getIzquierdo());
 
             preOrden(nodo.getDerecho());
+        }
+    }
+
+    public void postOrden() {
+
+        postOrden(raiz);
+
+        System.out.println();
+    }
+
+    private void postOrden(NodoAVL<E> nodo) {
+
+        if (nodo != null) {
+
+            postOrden(nodo.getIzquierdo());
+
+            postOrden(nodo.getDerecho());
+
+            System.out.println(nodo.getDato());
         }
     }
 
