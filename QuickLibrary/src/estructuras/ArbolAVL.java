@@ -172,6 +172,14 @@ public class ArbolAVL<E extends Comparable<E>>{
         return y;
     }
 
+    private int altura(NodoAVL<E> nodo) {
+
+        if (nodo == null)
+            return 0;
+
+        return nodo.getAltura();
+    }
+
 
 
     
