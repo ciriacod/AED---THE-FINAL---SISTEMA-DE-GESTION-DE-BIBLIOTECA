@@ -250,6 +250,18 @@ public class ArbolAVL<E extends Comparable<E>>{
         }
     }
 
+    public int contar() {
+        return contar(raiz);
+    }
+
+    private int contar(NodoAVL<E> nodo) {
+
+        if (nodo == null)
+            return 0;
+
+        return 1 + contar(nodo.getIzquierdo()) + contar(nodo.getDerecho());
+    }
+
 
 
     
