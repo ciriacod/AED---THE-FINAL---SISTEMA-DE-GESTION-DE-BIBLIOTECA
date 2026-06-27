@@ -38,6 +38,12 @@ public class NodoAVL<E> {
         this.derecho = derecho;
     }
 
+     public int getAltura() {
+        return altura;
+    }
 
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
 
 }
