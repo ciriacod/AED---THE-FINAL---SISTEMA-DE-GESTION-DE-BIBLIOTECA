@@ -15,18 +15,15 @@ public class ArbolAVL<E extends Comparable<E>>{
 
     private NodoAVL<E> insertar(NodoAVL<E> nodo, E dato) {
 
-        if (nodo == null)
-            return new NodoAVL<>(dato);
+        if (nodo == null) return new NodoAVL<>(dato);
 
         if (dato.compareTo(nodo.getDato()) < 0) {
 
-            nodo.setIzquierdo(
-                    insertar(nodo.getIzquierdo(), dato));
+            nodo.setIzquierdo(insertar(nodo.getIzquierdo(), dato));
 
         } else if (dato.compareTo(nodo.getDato()) > 0) {
 
-            nodo.setDerecho(
-                    insertar(nodo.getDerecho(), dato));
+            nodo.setDerecho(insertar(nodo.getDerecho(), dato));
 
         } else {
 
@@ -38,10 +35,29 @@ public class ArbolAVL<E extends Comparable<E>>{
         return balancear(nodo);
     }
 
+    //Busca un dato en el árbol
+    
+    public E buscar(E dato) {
+
+        NodoAVL<E> resultado = buscarNodo(raiz, dato);
+
+        return resultado != null ? resultado.getDato() : null;
+    }
+
+    private NodoAVL<E> buscarNodo(NodoAVL<E> nodo, E dato) {
+
+        if (nodo == null) return null;
+
+        if (dato.compareTo(nodo.getDato()) == 0) return nodo;
+
+        if (dato.compareTo(nodo.getDato()) < 0) return buscarNodo(nodo.getIzquierdo(), dato);
+
+        return buscarNodo(nodo.getDerecho(), dato);
+    }
+
     
     public NodoAVL<E> getRaiz() {
         return raiz;
     }
-
 }
 
