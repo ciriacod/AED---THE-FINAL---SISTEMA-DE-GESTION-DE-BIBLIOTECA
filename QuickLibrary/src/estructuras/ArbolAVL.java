@@ -262,13 +262,20 @@ public class ArbolAVL<E extends Comparable<E>>{
         return 1 + contar(nodo.getIzquierdo()) + contar(nodo.getDerecho());
     }
 
+    public boolean estaVacio() {
+        return raiz == null;
+    }
 
+    public void limpiar() {
+        raiz = null;
+    }
 
+    public int getAltura() {
+        return altura(raiz);
+    }
     
     public NodoAVL<E> getRaiz() {
         return raiz;
     }
-
-    
 }
 
