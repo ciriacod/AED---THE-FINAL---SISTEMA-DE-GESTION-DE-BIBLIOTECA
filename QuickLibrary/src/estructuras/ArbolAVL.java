@@ -15,7 +15,8 @@ public class ArbolAVL<E extends Comparable<E>>{
 
     private NodoAVL<E> insertar(NodoAVL<E> nodo, E dato) {
 
-        if (nodo == null) return new NodoAVL<>(dato);
+        if (nodo == null) 
+            return new NodoAVL<>(dato);
 
         if (dato.compareTo(nodo.getDato()) < 0) {
 
@@ -35,8 +36,8 @@ public class ArbolAVL<E extends Comparable<E>>{
         return balancear(nodo);
     }
 
-    //Busca un dato en el árbol
-    
+    //Busca un objeto en el árbol
+
     public E buscar(E dato) {
 
         NodoAVL<E> resultado = buscarNodo(raiz, dato);
@@ -46,13 +47,72 @@ public class ArbolAVL<E extends Comparable<E>>{
 
     private NodoAVL<E> buscarNodo(NodoAVL<E> nodo, E dato) {
 
-        if (nodo == null) return null;
+        if (nodo == null) 
+            return null;
 
-        if (dato.compareTo(nodo.getDato()) == 0) return nodo;
+        if (dato.compareTo(nodo.getDato()) == 0) 
+            return nodo;
 
-        if (dato.compareTo(nodo.getDato()) < 0) return buscarNodo(nodo.getIzquierdo(), dato);
+        if (dato.compareTo(nodo.getDato()) < 0) 
+            return buscarNodo(nodo.getIzquierdo(), dato);
 
         return buscarNodo(nodo.getDerecho(), dato);
+    }
+    
+    //Elimina un elemento del árbol
+
+    public void eliminar(E dato) {
+        raiz = eliminar(raiz, dato);
+    }
+
+    private NodoAVL<E> eliminar(NodoAVL<E> nodo, E dato) {
+
+        if (nodo == null) 
+            return null;
+
+        if (dato.compareTo(nodo.getDato()) < 0) {
+
+            nodo.setIzquierdo(eliminar(nodo.getIzquierdo(), dato));
+
+        } else if (dato.compareTo(nodo.getDato()) > 0) {
+
+            nodo.setDerecho(eliminar(nodo.getDerecho(), dato));
+
+        } else {
+
+            // Sin hijos
+            if (nodo.getIzquierdo() == null && nodo.getDerecho() == null) 
+                return null;
+
+            // Un hijo derecho
+            if (nodo.getIzquierdo() == null) 
+                return nodo.getDerecho();
+
+            // Un hijo izquierdo
+            if (nodo.getDerecho() == null) 
+                return nodo.getIzquierdo();
+
+            // Dos hijos
+            NodoAVL<E> sucesor = minimo(nodo.getDerecho());
+
+            nodo.setDato(sucesor.getDato());
+
+            nodo.setDerecho(eliminar(nodo.getDerecho(),sucesor.getDato()));
+        }
+
+        actualizarAltura(nodo);
+
+        return balancear(nodo);
+    }
+
+    //Obtiene el menor nodo
+    
+    private NodoAVL<E> minimo(NodoAVL<E> nodo) {
+
+        while (nodo.getIzquierdo() != null) 
+            nodo = nodo.getIzquierdo();
+
+        return nodo;
     }
 
     
