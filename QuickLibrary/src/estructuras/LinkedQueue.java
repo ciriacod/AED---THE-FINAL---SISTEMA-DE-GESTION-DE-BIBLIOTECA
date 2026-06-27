@@ -1,8 +1,8 @@
 package estructuras;
 
 public class LinkedQueue<E>{
-    private Node<E> first;
-    private Node<E> last;
+    private NodeAVL<E> first;
+    private NodeAVL<E> last;
     private int size;
 
     public LinkedQueue() {
@@ -12,7 +12,7 @@ public class LinkedQueue<E>{
     }
 
     public void enqueue(E data) {
-        Node<E> newNode = new Node<E>(data);
+        NodeAVL<E> newNode = new NodeAVL<E>(data);
         if (isEmpty()) {
             first = newNode;
         } else {
@@ -54,7 +54,7 @@ public class LinkedQueue<E>{
             System.out.println("Lista de solicitudes esta vacia.");
             return;
         }
-        Node<E> actual = first;
+        NodeAVL<E> actual = first;
         int index = 1;
         while (actual != null) {
             System.out.println(index + ". " + actual.getData().toString());
