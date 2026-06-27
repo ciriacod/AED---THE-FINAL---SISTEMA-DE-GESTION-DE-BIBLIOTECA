@@ -22,6 +22,21 @@ public class NodoAVL<E> {
         this.dato = dato;
     }
 
+    public NodoAVL<E> getIzquierdo() {
+        return izquierdo;
+    }
+
+    public void setIzquierdo(NodoAVL<E> izquierdo) {
+        this.izquierdo = izquierdo;
+    }
+
+    public NodoAVL<E> getDerecho() {
+        return derecho;
+    }
+
+    public void setDerecho(NodoAVL<E> derecho) {
+        this.derecho = derecho;
+    }
 
 
 
