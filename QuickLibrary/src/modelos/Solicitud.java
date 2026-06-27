@@ -1,12 +1,14 @@
 package modelos;
 
+import java.util.Date;
+
 public class Solicitud {
     private String codigoEstudiante;
     private String nombreEstudiante;
     private int codigoLibro;
-    private Fecha fechaSolicitud;
+    private Date fechaSolicitud;
     
-    public Solicitud(String codigoEstudiante, String nombreEstudiante, int codigoLibro) {
+    public Solicitud(String codigoEstudiante, String nombreEstudiante, int codigoLibro, Date fechaSolicitud) {
         this.codigoEstudiante = codigoEstudiante;
         this.nombreEstudiante = nombreEstudiante;
         this.codigoLibro = codigoLibro;
@@ -25,7 +27,7 @@ public class Solicitud {
         return codigoLibro;
     }
 
-    public Fecha getFechaSolicitud() {
+    public Date getFechaSolicitud() {
         return fechaSolicitud;
     }
 

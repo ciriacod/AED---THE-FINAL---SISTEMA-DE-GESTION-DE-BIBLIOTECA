@@ -6,7 +6,7 @@ public class Libro implements Comparable<Libro> {
     private String autor;
     private String categoria;
     private int anio;
-    private String estado;
+    private String estado;      //"Disponible", "Solicitado" , "Devuelto" , "No Disponible"
     public Libro(int codigo, String titulo, String autor, String categoria, int anio) {
         this.codigo = codigo;
         this.titulo = titulo;
