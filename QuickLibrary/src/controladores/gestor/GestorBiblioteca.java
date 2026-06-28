@@ -38,6 +38,11 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
                     Libro nuevo = new Libro(cod, tit, aut, est, stk);
                     registrarLibro(nuevo);
                 }
+            }
+            System.out.println("Carga de datos terminada.");
+        }catch (Exception e) {
+            System.out.println("No se pudo cargar el CSV / no exisrte: " + e.getMessage());
+        }
     }
 
     // === Modulo ILibroControlador ===
