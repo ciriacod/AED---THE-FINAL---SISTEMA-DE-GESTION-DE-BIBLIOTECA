@@ -15,6 +15,9 @@ public class Libro implements Comparable<Libro> {
         this.anio = anio;
         this.estado = "Disponible";
     }
+    public Libro(int codigo) {
+        this.codigo = codigo;
+    }
     public int getCodigo() {
         return codigo;
     }
