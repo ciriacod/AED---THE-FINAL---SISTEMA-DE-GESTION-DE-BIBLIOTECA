@@ -44,7 +44,7 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     }
 
     @Override
-    public Libro buscarLibroPorCodigo(int actual) {
+    public Libro buscarLibroPorCodigo(int codigo) {
         Libro actual = new Libro(codigo, "", "", "", 0);  // Vacio por siaca
         return catalogoLibros.buscar(actual);
     }
