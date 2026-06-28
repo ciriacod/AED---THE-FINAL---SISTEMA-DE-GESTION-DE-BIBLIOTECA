@@ -37,6 +37,14 @@ public class GestionBiblioteca_prueba {
         }
         Solicitud prox = colaSolicitudes.dequeue();
         Libro lib = buscarLibroPorCodigo(prox.getCodigoLibro());
+
+        if (lib != null && "Disponible".equalsIgnoreCase(lib.getEstado())) {
+            lib.setEstado("Prestado");
+            System.out.println("Prestamo aprobado para: " + prox.getNombreEstudiante());
+        } else {
+            System.out.println("No se pudo procesar el prestamo /no esta disponible");
+        }
+    }
     public void mostrarReporteBasico() {
         System.out.println("\n=REPORTE BÁSICO QUICKLIBRARY ");
         System.out.println("Cantidad total de libros en catalogo: " + catalogoLibros.countAllNodes());
