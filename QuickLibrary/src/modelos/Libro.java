@@ -7,6 +7,7 @@ public class Libro implements Comparable<Libro> {
     private String categoria;
     private int anio;
     private String estado;      //"Disponible", "Solicitado" , "Devuelto" , "No Disponible"
+    private int stock;
     public Libro(int codigo, String titulo, String autor, String categoria, int anio) {
         this.codigo = codigo;
         this.titulo = titulo;
@@ -14,6 +15,7 @@ public class Libro implements Comparable<Libro> {
         this.categoria = categoria;
         this.anio = anio;
         this.estado = "Disponible";
+        this.stock = 1; 
     }
     public Libro(int codigo) {
         this.codigo = codigo;
