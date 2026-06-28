@@ -1,4 +1,4 @@
-package controlador.interfaces;
+package controladores.interfaces;
 
 import modelos.Libro;
 
