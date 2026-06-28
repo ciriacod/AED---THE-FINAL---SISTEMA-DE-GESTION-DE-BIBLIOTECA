@@ -1,21 +1,27 @@
-package controladores.impl;
+package controladores.gestor;
 
 import controladores.interfaces.ILibroControlador;
 import controladores.interfaces.IPrestamoControlador;
 import controladores.interfaces.IReporteControlador;
-import controladores.ArbolBinarioBusqueda;  // Hay q cambiar el nombre segun como coloquen el arbol
-import estructuras.ColaGenerica;   // Hay q cambiar el nombre segun como coloquen la cola
+import estructuras.ArbolAVL;
+import estructuras.LinkedQueue;
 import modelos.Libro;
-import modelos.SolicitudPrestamo;
+import modelos.Solicitud;
 
 public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador, IReporteControlador {
     
+    /*
+    ILibroControlador - TODO DE LIBRO
+    IPrestamoControlador - TODO DE TRANSACCIONES
+    IReporteControlador - GENERA REPORTE
+    */
+
     // Dependemos de las abstracciones de las estructuras
-    private final ArbolBinarioBusqueda<Libro> catalogoLibros;
-    private final ColaGenerica<SolicitudPrestamo> colaSolicitudes;
+    private final ArbolAVL<Libro> catalogoLibros;
+    private final LinkedQueue<Solicitud> colaSolicitudes;
 
     // Constructor que recibe las estructuras
-    public GestorBiblioteca(ArbolBinarioBusqueda<Libro> catalogoLibros, ColaGenerica<SolicitudPrestamo> colaSolicitudes) {
+    public GestorBiblioteca(ArbolAVL<Libro> catalogoLibros, LinkedQueue<Solicitud> colaSolicitudes) {
         this.catalogoLibros = catalogoLibros;
         this.colaSolicitudes = colaSolicitudes;
     }
@@ -71,7 +77,7 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     // === Modulo IPrestamoControlador ===
 
     @Override
-    public void registrarSolicitud(SolicitudPrestamo solicitud) {
+    public void registrarSolicitud(Solicitud solicitud) {
         if (solicitud == null) {
             System.out.println("Solicitud invalida");
             return;
@@ -95,7 +101,7 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         }
 
         // Desencolamos respetando estrictamente el orden FIFO
-        SolicitudPrestamo siguienteSol = colaSolicitudes.dequeue();
+        Solicitud siguienteSol = colaSolicitudes.dequeue();
         Libro libro = buscarLibroPorCodigo(siguienteSol.getCodigoLibro());
 
         // Verificamos disponibilidad
@@ -132,7 +138,7 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     @Override
     public void generarReporteEstadistico() {
         System.out.println("\n======== REPORTE ESTADISTICO =========");
-        System.out.println("Libros en Catalogo: " + catalogoLibros.contarElementos());
+        System.out.println("Libros en Catalogo: " + catalogoLibros.contar());
         System.out.println("Solicitudes en Espera: " + colaSolicitudes.size());
         System.out.println("========================================");
         // por aca se hara el reporte segun el metodo de busqda de arbol usen (inorden-preorden-postorden) o si quieren por pdf no se ya ven ustedes eso xd
