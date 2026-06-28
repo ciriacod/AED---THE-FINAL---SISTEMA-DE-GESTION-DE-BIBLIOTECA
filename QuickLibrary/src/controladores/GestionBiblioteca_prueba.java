@@ -13,8 +13,13 @@ public class GestionBiblioteca_prueba {
     }
 
     public void registrarLibro(Libro libro) {
+        if (libro == null) return;
+        if (buscarLibroPorCodigo(libro.getCodigo()) != null) {
+            System.out.println("El libro con codigo " + libro.getCodigo() + " ya existe.");
+            return;
+        }
         catalogoLibros.insert(libro);
-        System.out.println("Libro registrado con éxito: " + libro.getTitulo());
+        System.out.println("Libro registrado con exito: " + libro.getTitulo());
     }
 
     public Libro buscarLibroPorCodigo(int codigo) {
