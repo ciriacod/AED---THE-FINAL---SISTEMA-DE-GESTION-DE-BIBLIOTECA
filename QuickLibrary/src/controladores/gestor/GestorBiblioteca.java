@@ -1,9 +1,9 @@
-package controlador.impl;
+package controladores.impl;
 
-import controlador.interfaces.ILibroControlador;
-import controlador.interfaces.IPrestamoControlador;
-import controlador.interfaces.IReporteControlador;
-import estructuras.ArbolBinarioBusqueda;  // Hay q cambiar el nombre segun como coloquen el arbol
+import controladores.interfaces.ILibroControlador;
+import controladores.interfaces.IPrestamoControlador;
+import controladores.interfaces.IReporteControlador;
+import controladores.ArbolBinarioBusqueda;  // Hay q cambiar el nombre segun como coloquen el arbol
 import estructuras.ColaGenerica;   // Hay q cambiar el nombre segun como coloquen la cola
 import modelos.Libro;
 import modelos.SolicitudPrestamo;
