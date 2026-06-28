@@ -29,6 +29,15 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
             while ((linea = br.readLine()) != null) {
                 String[] p = linea.split(",");
                 if (p.length >= 5) {
+                    int cod = Integer.parseInt(p[0].trim());
+                    String tit = p[1].trim();
+                    String aut = p[2].trim();
+                    String est = p[3].trim();
+                    int stk = Integer.parseInt(p[4].trim());
+
+                    Libro nuevo = new Libro(cod, tit, aut, est, stk);
+                    registrarLibro(nuevo);
+                }
     }
 
     // === Modulo ILibroControlador ===
