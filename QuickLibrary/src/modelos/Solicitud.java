@@ -49,13 +49,11 @@ public class Solicitud {
 
     @Override
     public String toString() {
-        return String.format("Estudiante: %s (%s) | Libro ID: %d | Solicitado: %s",
-        nombreEstudiante, codigoEstudiante, codigoLibro, fechaSolicitud.toString());
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String fechaFormateada = (fechaSolicitud != null) ? sdf.format(fechaSolicitud) : "Sin fecha";
+        
+        return String.format("Estudiante: %s [%s] | Libro ID: %d | Fecha: %s",
+            nombreEstudiante, codigoEstudiante, codigoLibro, fechaFormateada
+        );
     }
-
-    
-
-    
-
-
 }
