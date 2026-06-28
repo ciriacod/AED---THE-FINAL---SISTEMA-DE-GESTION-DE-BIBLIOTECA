@@ -14,6 +14,7 @@ public class Solicitud {
         this.codigoLibro = codigoLibro;
         this.fechaSolicitud = fechaSolicitud;
     }
+    
 
     public String getCodigoEstudiante() {
         return codigoEstudiante;
@@ -29,6 +30,21 @@ public class Solicitud {
 
     public Date getFechaSolicitud() {
         return fechaSolicitud;
+    }
+    public void setCodigoEstudiante(String codigoEstudiante) {
+        this.codigoEstudiante = codigoEstudiante;
+    }
+
+    public void setNombreEstudiante(String nombreEstudiante) {
+        this.nombreEstudiante = nombreEstudiante;
+    }
+
+    public void setCodigoLibro(int codigoLibro) {
+        this.codigoLibro = codigoLibro;
+    }
+
+    public void setFechaSolicitud(Date fechaSolicitud) {
+        this.fechaSolicitud = fechaSolicitud;
     }
 
     @Override
