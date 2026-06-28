@@ -30,6 +30,13 @@ public class GestionBiblioteca_prueba {
         colaSolicitudes.enqueue(solicitud);
         System.out.println("Solicitud añadida a la cola para el estudiante: " + solicitud.getNombreEstudiante());
     }
+    public void atenderSolicitud() {
+        if (colaSolicitudes.isEmpty()) {
+            System.out.println("No hay solicitudes en cola.");
+            return;
+        }
+        Solicitud prox = colaSolicitudes.dequeue();
+        Libro lib = buscarLibroPorCodigo(prox.getCodigoLibro());
     public void mostrarReporteBasico() {
         System.out.println("\n=REPORTE BÁSICO QUICKLIBRARY ");
         System.out.println("Cantidad total de libros en catalogo: " + catalogoLibros.countAllNodes());
