@@ -56,6 +56,12 @@ public class Libro implements Comparable<Libro> {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    public int getStock() {
+        return stock;
+    }
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -74,6 +80,4 @@ public class Libro implements Comparable<Libro> {
             codigo, titulo, autor, categoria, anio, estado
         );
     }
-
-    
 }
