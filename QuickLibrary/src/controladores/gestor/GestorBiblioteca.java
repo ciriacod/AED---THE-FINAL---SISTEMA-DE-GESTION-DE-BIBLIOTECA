@@ -19,4 +19,10 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         this.catalogoLibros = catalogoLibros;
         this.colaSolicitudes = colaSolicitudes;
     }
+
+    // Metodo para la carga de libros iniciales
+    public void cargarDatosIniciales() {
+        // Aqui mijos colocan el meotodo o el llamado para la carga del csv :3
+        System.out.println("Cargando datos guardados");
+    }
 }
