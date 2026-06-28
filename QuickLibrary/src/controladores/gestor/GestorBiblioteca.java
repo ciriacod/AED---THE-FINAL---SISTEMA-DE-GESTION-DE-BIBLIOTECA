@@ -68,6 +68,8 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         System.out.println("Libro registrado: " + libro.getTitulo());
     }
 
+    // BORRAR LIBRO PENDIENTE
+
     @Override
     public Libro buscarLibroPorCodigo(int codigo) {
         Libro actual = new Libro(codigo, "", "", "", 0);  // Vacio por siaca
