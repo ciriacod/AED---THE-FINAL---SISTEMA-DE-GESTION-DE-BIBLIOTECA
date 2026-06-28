@@ -122,8 +122,9 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
             return;
         }
 
+        libro.setStock(libro.getStock() + 1);
         libro.setEstado("Disponible");
-        System.out.println("Devolucion procesada. El libro '" + libro.getTitulo() + "' vuelve a estar Disponible");
+        System.out.println("Devolucion lista. Libro: " + libro.getTitulo() + " | Stock nuevo: " + libro.getStock());
     }
 
     // === Modulo IReporteControlador ===
