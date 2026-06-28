@@ -25,4 +25,27 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         // Aqui mijos colocan el meotodo o el llamado para la carga del csv :3
         System.out.println("Cargando datos guardados");
     }
+
+    // === Modulo ILibroControlador ===
+    
+    @Override
+    public void registrarLibro(Libro libro) {
+        if (libro == null) {
+            System.out.println("No hay libro");
+            return;
+        }
+        // El arbol se encarga de buscar si ya existe el codigo internamente de igual manera se validara aqui
+        if (buscarLibroPorCodigo(libro.getCodigo()) != null) {
+            System.out.println("Libro duplicado");
+            return;
+        }
+        catalogoLibros.insertar(libro);
+        System.out.println("Libro registrado: " + libro.getTitulo());
+    }
+
+    @Override
+    public Libro buscarLibroPorCodigo(int actual) {
+        Libro actual = new Libro(codigo, "", "", "", 0, "");  // Vacio por siaca
+        return catalogoLibros.buscar(actual);
+    }
 }
