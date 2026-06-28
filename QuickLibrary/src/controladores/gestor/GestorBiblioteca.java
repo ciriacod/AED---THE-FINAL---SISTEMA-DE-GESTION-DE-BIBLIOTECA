@@ -106,4 +106,15 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         libro.setEstado("Disponible");
         System.out.println("Devolucion procesada. El libro '" + libro.getTitulo() + "' vuelve a estar Disponible");
     }
+
+    // === Modulo IReporteControlador ===
+
+    @Override
+    public void generarReporteEstadistico() {
+        System.out.println("\n======== REPORTE ESTADISTICO =========");
+        System.out.println("Libros en Catalogo: " + catalogoLibros.contarElementos());
+        System.out.println("Solicitudes en Espera: " + colaSolicitudes.size());
+        System.out.println("========================================");
+        // por aca se hara el reporte segun el metodo de busqda de arbol usen (inorden-preorden-postorden) o si quieren por pdf no se ya ven ustedes eso xd
+    }
 }
