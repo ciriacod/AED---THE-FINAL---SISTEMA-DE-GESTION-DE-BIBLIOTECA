@@ -48,4 +48,62 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         Libro actual = new Libro(codigo, "", "", "", 0);  // Vacio por siaca
         return catalogoLibros.buscar(actual);
     }
+
+    // === Modulo IPrestamoControlador ===
+
+    @Override
+    public void registrarSolicitud(SolicitudPrestamo solicitud) {
+        if (solicitud == null) {
+            System.out.println("Solicitud invalida");
+            return;
+        }
+        
+        Libro libro = buscarLibroPorCodigo(solicitud.getCodigoLibro());
+        if (libro == null) {
+            System.out.println("El libro solicitado no existe en el catalogo");
+            return;
+        }
+        
+        colaSolicitudes.enqueue(solicitud);
+        System.out.println("Solicitud en espera para el estudiante: " + solicitud.getNombreEstudiante());  // Si no se va a registrar un estudiante se borra
+    }
+
+    @Override
+    public void atenderSiguienteSolicitud() {
+        if (colaSolicitudes.isEmpty()) {
+            System.out.println("No hay solicitudes pendientes");
+            return;
+        }
+
+        // Desencolamos respetando estrictamente el orden FIFO
+        SolicitudPrestamo siguienteSol = colaSolicitudes.dequeue();
+        Libro libro = buscarLibroPorCodigo(siguienteSol.getCodigoLibro());
+
+        // Verificamos disponibilidad
+        if (libro != null && "Disponible".equalsIgnoreCase(libro.getEstado())) {
+            libro.setEstado("Prestado");
+            System.out.println("Prestamo aprobado. Libro '" + libro.getTitulo() + 
+                               "' entregado a " + siguienteSol.getNombreEstudiante());
+        } else {
+            System.out.println("El libro con codigo " + siguienteSol.getCodigoLibro() + 
+                               " ya se encuentra prestado o no esta disponible");
+        }
+    }
+
+    @Override
+    public void registrarDevolucion(int codigoLibro) {
+        Libro libro = buscarLibroPorCodigo(codigoLibro);
+        if (libro == null) {
+            System.out.println("El libro con codigo " + codigoLibro + " no pertenece al catalogo.");
+            return;
+        }
+
+        if ("Disponible".equalsIgnoreCase(libro.getEstado())) {
+            System.out.println("El libro ya se encontraba como Disponible");
+            return;
+        }
+
+        libro.setEstado("Disponible");
+        System.out.println("Devolucion procesada. El libro '" + libro.getTitulo() + "' vuelve a estar Disponible");
+    }
 }
