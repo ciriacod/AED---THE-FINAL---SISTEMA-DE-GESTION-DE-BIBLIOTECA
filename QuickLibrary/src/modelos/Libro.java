@@ -54,7 +54,13 @@ public class Libro implements Comparable<Libro> {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Libro otro = (Libro) obj;
+        return this.codigo == otro.codigo;
+    }
     @Override
     public int compareTo(Libro otro){
         return Integer.compare(this.codigo, otro.codigo);
