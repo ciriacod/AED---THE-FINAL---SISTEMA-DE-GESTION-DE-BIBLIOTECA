@@ -24,6 +24,11 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     public void cargarDatosIniciales() {
         // Aqui mijos colocan el meotodo o el llamado para la carga del csv :3
         System.out.println("Cargando datos guardados");
+        try (java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("test.csv"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] p = linea.split(",");
+                if (p.length >= 5) {
     }
 
     // === Modulo ILibroControlador ===
