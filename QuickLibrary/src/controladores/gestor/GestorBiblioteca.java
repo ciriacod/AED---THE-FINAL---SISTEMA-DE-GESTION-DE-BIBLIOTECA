@@ -47,6 +47,11 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     public void guardarDatos(){
         gestorCSV.guardarLibros(catalogoLibros);
     }
+    
+    // test exportacion
+    public void exportarDatos(String ruta){
+        new GestorCSV(ruta).guardarLibros(catalogoLibros);
+    }
 
     // === Modulo ILibroControlador ===
     
