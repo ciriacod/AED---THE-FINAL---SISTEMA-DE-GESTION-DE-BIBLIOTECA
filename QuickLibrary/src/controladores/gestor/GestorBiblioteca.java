@@ -229,6 +229,18 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         return contador;
     }
 
+    public int contarLibrosDisponibles(){
+
+        return contarPorEstado(catalogoLibros.getRaiz(),"Disponible");
+
+    }
+
+    public int contarLibrosPrestados(){
+
+        return contarPorEstado(catalogoLibros.getRaiz(),"Prestado");
+
+    }
+
     @Override
     public void registrarSolicitud(Solicitud solicitud) {
         if (solicitud == null) {
