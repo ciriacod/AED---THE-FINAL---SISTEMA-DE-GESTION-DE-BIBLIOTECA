@@ -7,5 +7,5 @@ public interface IPrestamoControlador {
     void mostrarColaSolicitudes();
     Solicitud consultarSiguienteSolicitud();
     void atenderSiguienteSolicitud();
-    // Faltaria el metodo para Eliminar una solicitud atendida de la cola
+    void registrarDevolucion(int codigoLibro);
 }

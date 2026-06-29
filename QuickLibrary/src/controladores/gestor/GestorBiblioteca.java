@@ -77,7 +77,40 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
             return;
         }
         System.out.println("\n--- CATÁLOGO COMPLETO ---");
+        // Accion del AVL
         catalogoLibros.recorridoInorden(); // Muestra ordenados por código ascendentemente
+    }
+
+    @Override
+    public void modificarLibro(int codigo, String nuevoTitulo, String nuevoAutor, String nuevaCategoria, int nuevoAnio) {
+        Libro libro = buscarLibroPorCodigo(codigo);
+        if (libro == null) {
+            System.out.println("El libro con código " + codigo + " no existe.");
+            return;
+        }
+        
+        libro.setTitulo(nuevoTitulo);
+        libro.setAutor(nuevoAutor);
+        libro.setCategoria(nuevaCategoria);
+        libro.setAnio(nuevoAnio);
+        System.out.println("Datos del libro modificados exitosamente.");
+    }
+
+    @Override
+    public void eliminarLibro(int codigo) {
+        Libro libro = buscarLibroPorCodigo(codigo);
+        if (libro == null) {
+            System.out.println("No se puede eliminar. El libro no existe.");
+            return;
+        }
+        catalogoLibros.eliminar(libro);
+        System.out.println("Libro eliminado: " + libro.getTitulo());
+    }
+
+    @Override
+    public void mostrarLibrosPorEstado(String estado) {
+        System.out.println("\n--- LIBROS EN ESTADO: " + estado.toUpperCase() + " ---");
+        catalogoLibros.mostrarPorEstado(estado); 
     }
 
     @Override
@@ -85,6 +118,11 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         Libro actual = new Libro(codigo, "", "", "", 0);  // Vacio por siaca
         return catalogoLibros.buscar(actual);
     }
+
+    @Override
+    public void buscarLibrosPorCriterio(String criterio, String valor) {
+        System.out.println("\n--- RESULTADOS DE BÚSQUEDA POR " + criterio.toUpperCase() + " ---");
+        catalogoLibros.buscarPorCriterio(criterio, valor);
 
     // === Modulo IPrestamoControlador ===
 
@@ -102,7 +140,26 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         }
         
         colaSolicitudes.enqueue(solicitud);
-        System.out.println("Solicitud en espera para el estudiante: " + solicitud.getNombreEstudiante());  // Si no se va a registrar un estudiante se borra
+        System.out.println("Solicitud en espera para el estudiante: " + solicitud.getNombreEstudiante()); 
+    }
+
+    @Override
+    public void mostrarColaSolicitudes() {
+        if (colaSolicitudes.isEmpty()) {
+            System.out.println("No hay solicitudes en la cola de espera.");
+            return;
+        }
+        System.out.println("\n--- COLA DE SOLICITUDES PENDIENTES ---");
+        colaSolicitudes.mostrar(); 
+    }
+
+    @Override
+    public Solicitud consultarSiguienteSolicitud() {
+        if (colaSolicitudes.isEmpty()) {
+            System.out.println("No hay solicitudes pendientes.");
+            return null;
+        }
+        return colaSolicitudes.peek(); 
     }
 
     @Override
@@ -112,26 +169,37 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
             return;
         }
 
-        // Desencolamos respetando estrictamente el orden FIFO
+        // Retirar la solicitud de la cola
         Solicitud siguienteSol = colaSolicitudes.dequeue();
+        // Verificar que el libro exista
         Libro libro = buscarLibroPorCodigo(siguienteSol.getCodigoLibro());
-
-        // Verificamos disponibilidad
-        if (libro != null && "Disponible".equalsIgnoreCase(libro.getEstado())) {
+        if (libro == null) {
+            System.out.println("Libro no encontrado");
+            return;
+        }
+        // Comprobar que el libro este disponible
+        if ("Disponible".equalsIgnoreCase(libro.getEstado())) {
+            if(libro.getStock() <= 0){
+                System.out.println("Libro agotado en stock");
+                return;
+            }
+            // Cambiar su estado a prestado
             libro.setEstado("Prestado");
-            System.out.println("Prestamo aprobado. Libro '" + libro.getTitulo() + 
+            // Mostrar un mensaje con el resultado de la operacion
+            System.out.println("Prestamos aprobado. Libro '" + libro.getTitulo() + 
                                "' entregado a " + siguienteSol.getNombreEstudiante());
+            libro.setStock(libro.getStock() - 1);
         } else {
-            System.out.println("El libro con codigo " + siguienteSol.getCodigoLibro() + 
-                               " ya se encuentra prestado o no esta disponible");
+            System.out.println("OPERACIÓN RECHAZADA: El libro '" + libro.getTitulo() + "' ya se encuentra prestado.");
         }
     }
 
     @Override
     public void registrarDevolucion(int codigoLibro) {
+        // Registrar la devolucion de un libro
         Libro libro = buscarLibroPorCodigo(codigoLibro);
         if (libro == null) {
-            System.out.println("El libro con codigo " + codigoLibro + " no pertenece al catalogo.");
+            System.out.println("El libro con codigo " + codigoLibro + " no pertenece al catalogo");
             return;
         }
 
@@ -140,8 +208,10 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
             return;
         }
 
+        // Cambiar el estado del libro a disponible
         libro.setStock(libro.getStock() + 1);
         libro.setEstado("Disponible");
+        // Mostrar un mensaje de confirmacion
         System.out.println("Devolucion lista. Libro: " + libro.getTitulo() + " | Stock nuevo: " + libro.getStock());
     }
 
@@ -149,11 +219,16 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
 
     @Override
     public void generarReporteEstadistico() {
-        System.out.println("\n======== REPORTE ESTADISTICO =========");
-        System.out.println("Libros en Catalogo: " + catalogoLibros.contar());
-        System.out.println("Solicitudes en Espera: " + colaSolicitudes.size());
+        // Metodos q se encarga el arbol
+        int disponibles = catalogoLibros.contarPorEstado("Disponible");
+        int prestados = catalogoLibros.contarPorEstado("Prestado");
+
+        System.out.println("\n======== REPORTE ESTADÍSTICO =========");
+        System.out.println("Cantidad total de libros       : " + catalogoLibros.contar());
+        System.out.println("Cantidad de libros disponibles : " + disponibles);
+        System.out.println("Cantidad de libros prestados   : " + prestados);
+        System.out.println("Cantidad de solicitudes pendientes: " + colaSolicitudes.size());
         System.out.println("========================================");
-        // por aca se hara el reporte segun el metodo de busqda de arbol usen (inorden-preorden-postorden) o si quieren por pdf no se ya ven ustedes eso xd
     }
 
     @Override
