@@ -193,7 +193,6 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
 
     @Override
     public void mostrarLibrosPrestados() {
-        System.out.println("\n--- LIBROS PRESTADOS ---");
         mostrarLibrosPrestados(catalogoLibros.getRaiz());
     }
 
@@ -209,6 +208,37 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         }
 
         mostrarLibrosPrestados(nodo.getDerecho());
+    }
+
+    //Contara por el estado que se va enviar "DISPONIBLE" o "PRESTADO"
+
+    private int contarPorEstado(NodoAVL<Libro> nodo, String estado){
+
+        if(nodo==null)
+            return 0;
+
+        int contador=0;
+
+        contador+=contarPorEstado(nodo.getIzquierdo(),estado);
+
+        if(nodo.getDato().getEstado().equalsIgnoreCase(estado))
+            contador++;
+
+        contador+=contarPorEstado(nodo.getDerecho(),estado);
+
+        return contador;
+    }
+
+    public int contarLibrosDisponibles(){
+
+        return contarPorEstado(catalogoLibros.getRaiz(),"Disponible");
+
+    }
+
+    public int contarLibrosPrestados(){
+
+        return contarPorEstado(catalogoLibros.getRaiz(),"Prestado");
+
     }
 
     @Override
