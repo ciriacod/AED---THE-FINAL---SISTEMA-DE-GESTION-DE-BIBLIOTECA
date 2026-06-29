@@ -154,6 +154,25 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     }
 
     @Override
+    public void buscarLibroPorCategoria(String categoria) {
+        buscarLibroPorCategoria(catalogoLibros.getRaiz(), categoria);
+    }
+
+    private void buscarLibroPorCategoria(NodoAVL<Libro> nodo, String categoria) {
+
+        if (nodo == null)
+            return;
+
+        buscarLibroPorCategoria(nodo.getIzquierdo(), categoria);
+
+        if (nodo.getDato().getCategoria().equalsIgnoreCase(categoria)) {
+            System.out.println(nodo.getDato());
+        }
+
+        buscarLibroPorCategoria(nodo.getDerecho(), categoria);
+    }
+
+    @Override
     public void registrarSolicitud(Solicitud solicitud) {
         if (solicitud == null) {
             System.out.println("Solicitud invalida");
