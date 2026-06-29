@@ -171,7 +171,41 @@ public class MenuPrincipal {
 
     }
     private static void modificarLibro() {
-        System.out.println("\nFuncion pendiente.");
+
+        System.out.println("\n MODIFICAR LIBRO ");
+
+        System.out.print("Codigo del libro: ");
+        int codigo = Integer.parseInt(scanner.nextLine());
+
+        Libro libro = gestor.buscarLibroPorCodigo(codigo);
+
+        if (libro == null) {
+
+            System.out.println("Libro no encontrado.");
+            return;
+
+        }
+
+        System.out.print("Nuevo titulo: ");
+        String titulo = scanner.nextLine();
+
+        System.out.print("Nuevo autor: ");
+        String autor = scanner.nextLine();
+
+        System.out.print("Nueva categoria: ");
+        String categoria = scanner.nextLine();
+
+        System.out.print("Nuevo año: ");
+        int anio = Integer.parseInt(scanner.nextLine());
+
+        gestor.modificarLibro(
+                codigo,
+                titulo,
+                autor,
+                categoria,
+                anio
+        );
+
     }
     private static void eliminarLibro() {
         System.out.println("\nFunción pendiente.");
