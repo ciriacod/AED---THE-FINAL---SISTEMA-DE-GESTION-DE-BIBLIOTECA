@@ -78,15 +78,16 @@ public class Libro implements Comparable<Libro> {
         Libro otro = (Libro) obj;
         return this.codigo == otro.codigo;
     }
-    @Override
-    public int compareTo(Libro otro){
-        return Integer.compare(this.codigo, otro.codigo);
-    }
 
     @Override
     public String toString(){
         return String.format("ID: %d | %s - %s [%s] (%d) -> %s",
             codigo, titulo, autor, categoria, anio, estado
         );
+    }
+    @Override
+    public int compareTo(Libro o) {
+        if (o == null) return 0;
+        return Integer.compare(this.codigo, o.getCodigo());
     }
 }
