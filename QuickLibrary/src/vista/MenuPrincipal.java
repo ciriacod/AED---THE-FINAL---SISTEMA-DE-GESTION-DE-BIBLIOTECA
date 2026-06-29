@@ -161,7 +161,14 @@ public class MenuPrincipal {
         }
     }
     private static void buscarCategoria() {
-        System.out.println("\nFuncion pendiente.");
+
+        System.out.println("\n BUSCAR LIBROS POR CATEGORIA ");
+
+        System.out.print("Categoria: ");
+        String categoria = scanner.nextLine();
+
+        gestor.buscarLibroPorCategoria(categoria);
+
     }
     private static void modificarLibro() {
         System.out.println("\nFuncion pendiente.");
