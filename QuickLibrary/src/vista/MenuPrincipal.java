@@ -219,7 +219,9 @@ public class MenuPrincipal {
     }
 
     private static void registrarSolicitud() {
+
         System.out.println("\n NUEVA SOLICITUD ");
+
         System.out.print("Codigo estudiante: ");
         String codigo = scanner.nextLine();
 
@@ -230,7 +232,13 @@ public class MenuPrincipal {
         int codigoLibro = Integer.parseInt(scanner.nextLine());
 
         Solicitud solicitud =
-                new Solicitud(codigo, nombre, codigoLibro, new Date());
+                new Solicitud(
+                        codigo,
+                        nombre,
+                        codigoLibro,
+                        new Date()
+                );
+
         gestor.registrarSolicitud(solicitud);
 
     }
