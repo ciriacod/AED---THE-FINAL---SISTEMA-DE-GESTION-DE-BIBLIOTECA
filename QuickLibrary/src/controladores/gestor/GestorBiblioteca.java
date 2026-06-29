@@ -13,9 +13,9 @@ import persistencia.GestorCSV;
 public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador, IReporteControlador {
     
     /*
-    ILibroControlador - TODO DE LIBRO
-    IPrestamoControlador - TODO DE TRANSACCIONES
-    IReporteControlador - GENERA REPORTE
+    ILibroControlador - Operaciones de Libro
+    IPrestamoControlador - Operaciones de transacciones
+    IReporteControlador - Solo genera reporte
     */
 
     // Dependemos de las abstracciones de las estructuras
