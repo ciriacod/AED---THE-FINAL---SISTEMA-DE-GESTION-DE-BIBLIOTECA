@@ -5,9 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-
 import estructuras.LinkedQueue;
-
 import java.nio.file.Files;
 
 public class LectorCSV {

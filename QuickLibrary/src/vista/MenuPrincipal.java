@@ -1,15 +1,16 @@
 package vista;
 
 import java.util.Scanner;
+
+import controladores.gestor.GestorBiblioteca;
 import estructuras.ArbolAVL;
 import estructuras.LinkedQueue;
 import modelos.Libro;
 import modelos.Solicitud;
 
 public class MenuPrincipal {
-    private static ArbolAVL<Libro> bstLibros = new ArbolAVL<>();
-    private static LinkedQueue<Solicitud> colaSolicitudes = new LinkedQueue<>();
     private static Scanner scanner = new Scanner(System.String.getScanner() != null ? System.getScanner() : new Scanner(System.in));
+    private GestorBiblioteca<>
 
     public static void main(String[] args) {
         int opcion = 0;
