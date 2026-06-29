@@ -14,39 +14,28 @@ import estructuras.NodoAVL;
 import modelos.Libro;
 
 public class GestorCSV {
-
     private final Path rutaPredeterminada;
-
     public GestorCSV(String rutaPredeterminada) {
         this.rutaPredeterminada = Paths.get(rutaPredeterminada);
     }
 
-    // ===================== CARGAR =====================
-
     public LinkedQueue<Libro> cargarLibros() {
-
         LinkedQueue<Libro> libros = new LinkedQueue<>();
-
         if (!Files.exists(rutaPredeterminada)) {
             return libros;
         }
 
         try (BufferedReader br = Files.newBufferedReader(rutaPredeterminada, StandardCharsets.UTF_8)) {
-
             String linea;
-
             while ((linea = br.readLine()) != null) {
-
                 linea = linea.trim();
 
                 if (linea.isEmpty()) {
                     continue;
                 }
-
                 String[] campos = linea.split(",");
 
                 if (campos.length >= 5) {
-
                     int codigo = Integer.parseInt(campos[0].trim());
                     String titulo = campos[1].trim();
                     String autor = campos[2].trim();
@@ -54,7 +43,6 @@ public class GestorCSV {
                     int anio = Integer.parseInt(campos[4].trim());
 
                     if (campos.length >= 6) {
-
                         libros.enqueue(
                                 new Libro(
                                         codigo,
