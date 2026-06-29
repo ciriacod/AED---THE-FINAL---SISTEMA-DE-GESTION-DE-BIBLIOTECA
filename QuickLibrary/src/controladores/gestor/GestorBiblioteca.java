@@ -169,18 +169,23 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
             return;
         }
 
-        // Desencolamos respetando estrictamente el orden FIFO
+        // Retirar la solicitud de la cola
         Solicitud siguienteSol = colaSolicitudes.dequeue();
+        // Verificar que el libro exista
         Libro libro = buscarLibroPorCodigo(siguienteSol.getCodigoLibro());
-
-        // Verificamos disponibilidad
-        if (libro != null && "Disponible".equalsIgnoreCase(libro.getEstado())) {
+        if (libro == null) {
+            System.out.println("Libro no encontrado");
+            return;
+        }
+        // Comprobar que el libro este disponible
+        if ("Disponible".equalsIgnoreCase(libro.getEstado())) {
+            // Cambiar su estado a prestado
             libro.setEstado("Prestado");
-            System.out.println("Prestamo aprobado. Libro '" + libro.getTitulo() + 
+            // Mostrar un mensaje con el resultado de la operacion
+            System.out.println("Prestamos aprobado. Libro '" + libro.getTitulo() + 
                                "' entregado a " + siguienteSol.getNombreEstudiante());
         } else {
-            System.out.println("El libro con codigo " + siguienteSol.getCodigoLibro() + 
-                               " ya se encuentra prestado o no esta disponible");
+            System.out.println("OPERACIÓN RECHAZADA: El libro '" + libro.getTitulo() + "' ya se encuentra prestado.");
         }
     }
 
