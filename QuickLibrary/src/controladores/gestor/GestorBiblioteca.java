@@ -179,11 +179,16 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         }
         // Comprobar que el libro este disponible
         if ("Disponible".equalsIgnoreCase(libro.getEstado())) {
+            if(libro.getStock() <= 0){
+                System.out.println("Libro agotado en stock");
+                return;
+            }
             // Cambiar su estado a prestado
             libro.setEstado("Prestado");
             // Mostrar un mensaje con el resultado de la operacion
             System.out.println("Prestamos aprobado. Libro '" + libro.getTitulo() + 
                                "' entregado a " + siguienteSol.getNombreEstudiante());
+            libro.setStock(libro.getStock() - 1);
         } else {
             System.out.println("OPERACIÓN RECHAZADA: El libro '" + libro.getTitulo() + "' ya se encuentra prestado.");
         }
@@ -203,8 +208,10 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
             return;
         }
 
+        // Cambiar el estado del libro a disponible
         libro.setStock(libro.getStock() + 1);
         libro.setEstado("Disponible");
+        // Mostrar un mensaje de confirmacion
         System.out.println("Devolucion lista. Libro: " + libro.getTitulo() + " | Stock nuevo: " + libro.getStock());
     }
 
@@ -212,10 +219,15 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
 
     @Override
     public void generarReporteEstadistico() {
-        System.out.println("\n======== REPORTE ESTADISTICO =========");
-        System.out.println("Libros en Catalogo: " + catalogoLibros.contar());
-        System.out.println("Solicitudes en Espera: " + colaSolicitudes.size());
+        // Metodos q se encarga el arbol
+        int disponibles = catalogoLibros.contarPorEstado("Disponible");
+        int prestados = catalogoLibros.contarPorEstado("Prestado");
+
+        System.out.println("\n======== REPORTE ESTADÍSTICO =========");
+        System.out.println("Cantidad total de libros       : " + catalogoLibros.contar());
+        System.out.println("Cantidad de libros disponibles : " + disponibles);
+        System.out.println("Cantidad de libros prestados   : " + prestados);
+        System.out.println("Cantidad de solicitudes pendientes: " + colaSolicitudes.size());
         System.out.println("========================================");
-        // por aca se hara el reporte segun el metodo de busqda de arbol usen (inorden-preorden-postorden) o si quieren por pdf no se ya ven ustedes eso xd
     }
 }
