@@ -335,8 +335,8 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     @Override
     public void generarReporteEstadistico() {
         // Metodos q se encarga el arbol
-        int disponibles = catalogoLibros.contarPorEstado("Disponible");
-        int prestados = catalogoLibros.contarPorEstado("Prestado");
+        int disponibles = this.contarPorEstado(catalogoLibros.getRaiz(),"Disponible");
+        int prestados = this.contarPorEstado(catalogoLibros.getRaiz(),"Prestado");
 
         System.out.println("\n======== REPORTE ESTADÍSTICO =========");
         System.out.println("Cantidad total de libros       : " + catalogoLibros.contar());
