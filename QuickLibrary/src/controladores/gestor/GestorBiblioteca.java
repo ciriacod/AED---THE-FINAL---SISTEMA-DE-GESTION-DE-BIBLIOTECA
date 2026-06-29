@@ -73,13 +73,13 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
 
     @Override
     public void mostrarTodosLosLibros() {
-        if (catalogoLibros.isEmpty()) {
+        if (catalogoLibros.estaVacio()) {
             System.out.println("Catálogo vacío.");
             return;
         }
         System.out.println("\n--- CATÁLOGO COMPLETO ---");
         // Accion del AVL
-        catalogoLibros.recorridoInorden(); // Muestra ordenados por código ascendentemente
+        catalogoLibros.inOrden(); // Muestra ordenados por código ascendentemente
     }
 
     @Override
@@ -314,42 +314,5 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         System.out.println("Cantidad de libros prestados   : " + prestados);
         System.out.println("Cantidad de solicitudes pendientes: " + colaSolicitudes.size());
         System.out.println("========================================");
-    }
-
-    @Override
-    public void mostrarColaSolicitudes() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarColaSolicitudes'");
-    }
-
-    @Override
-    public Solicitud consultarSiguienteSolicitud() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'consultarSiguienteSolicitud'");
-    }
-
-    @Override
-    public void modificarLibro(int codigo, String nuevoTitulo, String nuevoAutor, String nuevaCategoria,
-            int nuevoAnio) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modificarLibro'");
-    }
-
-    @Override
-    public void eliminarLibro(int codigo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'eliminarLibro'");
-    }
-
-    @Override
-    public void mostrarLibrosPorEstado(String estado) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mostrarLibrosPorEstado'");
-    }
-
-    @Override
-    public void buscarLibrosPorCriterio(String criterio, String valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarLibrosPorCriterio'");
     }
 }
