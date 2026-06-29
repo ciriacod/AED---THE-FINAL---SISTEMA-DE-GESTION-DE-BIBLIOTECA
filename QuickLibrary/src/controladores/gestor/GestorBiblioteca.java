@@ -7,6 +7,7 @@ import estructuras.ArbolAVL;
 import estructuras.LinkedQueue;
 import modelos.Libro;
 import modelos.Solicitud;
+import persistencia.GestorCSV;
 
 public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador, IReporteControlador {
     
@@ -19,36 +20,32 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     // Dependemos de las abstracciones de las estructuras
     private final ArbolAVL<Libro> catalogoLibros;
     private final LinkedQueue<Solicitud> colaSolicitudes;
+    private final GestorCSV gestorCSV;
 
     // Constructor que recibe las estructuras
     public GestorBiblioteca(ArbolAVL<Libro> catalogoLibros, LinkedQueue<Solicitud> colaSolicitudes) {
         this.catalogoLibros = catalogoLibros;
         this.colaSolicitudes = colaSolicitudes;
+        this.gestorCSV = new GestorCSV("test.csv");
     }
 
     // Metodo para la carga de libros iniciales
-    public void cargarDatosIniciales() {
-        // Aqui mijos colocan el meotodo o el llamado para la carga del csv :3
-        System.out.println("Cargando datos guardados");
-        try (java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("test.csv"))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] p = linea.split(",");
-                if (p.length >= 5) {
-                    int cod = Integer.parseInt(p[0].trim());
-                    String tit = p[1].trim();
-                    String aut = p[2].trim();
-                    String est = p[3].trim();
-                    int stk = Integer.parseInt(p[4].trim());
+    public void cargarDatosIniciales(){
+        LinkedQueue<Libro> librosCargados = gestorCSV.cargarLibros();
 
-                    Libro nuevo = new Libro(cod, tit, aut, est, stk);
-                    registrarLibro(nuevo);
-                }
-            }
-            System.out.println("Carga de datos terminada.");
-        }catch (Exception e) {
-            System.out.println("No se pudo cargar el CSV / no exisrte: " + e.getMessage());
+        int cont = 0;
+        while (!librosCargados.isEmpty()) {
+            Libro libro = librosCargados.dequeue();
+            registrarLibro(libro);
+            cont++;
         }
+
+        System.out.println("Libros cargados: " + cont);
+    }
+
+    // Metodo para la guardar de libros
+    public void guardarDatos(){
+        gestorCSV.guardarLibros(catalogoLibros);
     }
 
     // === Modulo ILibroControlador ===
