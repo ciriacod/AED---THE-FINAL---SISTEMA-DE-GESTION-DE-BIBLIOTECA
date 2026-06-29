@@ -173,6 +173,25 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     }
 
     @Override
+    public void mostrarLibrosDisponibles() {
+        mostrarLibrosDisponibles(catalogoLibros.getRaiz());
+    }
+
+    private void mostrarLibrosDisponibles(NodoAVL<Libro> nodo) {
+
+        if (nodo == null)
+            return;
+
+        mostrarLibrosDisponibles(nodo.getIzquierdo());
+
+        if (nodo.getDato().getEstado().equalsIgnoreCase("Disponible")) {
+            System.out.println(nodo.getDato());
+        }
+
+        mostrarLibrosDisponibles(nodo.getDerecho());
+    }
+
+    @Override
     public void registrarSolicitud(Solicitud solicitud) {
         if (solicitud == null) {
             System.out.println("Solicitud invalida");
