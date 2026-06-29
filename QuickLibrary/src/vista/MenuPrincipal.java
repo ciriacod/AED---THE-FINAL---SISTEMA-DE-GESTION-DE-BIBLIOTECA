@@ -244,8 +244,7 @@ public class MenuPrincipal {
     }
 
     private static void mostrarSolicitudes() {
-        System.out.println("\n SOLICITUDES ");
-        colaSolicitudes.mostrar();
+        gestor.mostrarColaSolicitudes();
     }
     private static void atenderSolicitud() {
         gestor.atenderSiguienteSolicitud();
