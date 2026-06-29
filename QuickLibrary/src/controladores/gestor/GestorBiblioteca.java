@@ -140,7 +140,17 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         }
         
         colaSolicitudes.enqueue(solicitud);
-        System.out.println("Solicitud en espera para el estudiante: " + solicitud.getNombreEstudiante());  // Si no se va a registrar un estudiante se borra
+        System.out.println("Solicitud en espera para el estudiante: " + solicitud.getNombreEstudiante()); 
+    }
+
+    @Override
+    public void mostrarColaSolicitudes() {
+        if (colaSolicitudes.isEmpty()) {
+            System.out.println("No hay solicitudes en la cola de espera.");
+            return;
+        }
+        System.out.println("\n--- COLA DE SOLICITUDES PENDIENTES ---");
+        colaSolicitudes.mostrar(); 
     }
 
     @Override
