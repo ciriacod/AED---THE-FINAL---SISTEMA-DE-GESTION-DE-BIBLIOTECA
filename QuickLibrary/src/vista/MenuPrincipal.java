@@ -208,7 +208,14 @@ public class MenuPrincipal {
 
     }
     private static void eliminarLibro() {
-        System.out.println("\nFunción pendiente.");
+
+        System.out.println("\n ELIMINAR LIBRO ");
+
+        System.out.print("Codigo del libro: ");
+        int codigo = Integer.parseInt(scanner.nextLine());
+
+        gestor.eliminarLibro(codigo);
+
     }
 
     private static void registrarSolicitud() {
