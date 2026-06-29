@@ -14,8 +14,7 @@ public class MenuPrincipal {
     private static final ArbolAVL<Libro> arbolLibros = new ArbolAVL<>();
     private static final LinkedQueue<Solicitud> colaSolicitudes = new LinkedQueue<>();
 
-    private static final GestorBiblioteca gestor =
-            new GestorBiblioteca(arbolLibros, colaSolicitudes);
+    private static final GestorBiblioteca gestor = new GestorBiblioteca(arbolLibros, colaSolicitudes);
     
     public static void main(String[] args) {
         gestor.cargarDatosIniciales();
