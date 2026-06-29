@@ -191,9 +191,10 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
 
     @Override
     public void registrarDevolucion(int codigoLibro) {
+        // Registrar la devolucion de un libro
         Libro libro = buscarLibroPorCodigo(codigoLibro);
         if (libro == null) {
-            System.out.println("El libro con codigo " + codigoLibro + " no pertenece al catalogo.");
+            System.out.println("El libro con codigo " + codigoLibro + " no pertenece al catalogo");
             return;
         }
 
