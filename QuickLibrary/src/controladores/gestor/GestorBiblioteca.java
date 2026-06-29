@@ -97,6 +97,17 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     }
 
     @Override
+    public void eliminarLibro(int codigo) {
+        Libro libro = buscarLibroPorCodigo(codigo);
+        if (libro == null) {
+            System.out.println("No se puede eliminar. El libro no existe.");
+            return;
+        }
+        catalogoLibros.eliminar(libro);
+        System.out.println("Libro eliminado: " + libro.getTitulo());
+    }
+
+    @Override
     public Libro buscarLibroPorCodigo(int codigo) {
         Libro actual = new Libro(codigo, "", "", "", 0);  // Vacio por siaca
         return catalogoLibros.buscar(actual);
