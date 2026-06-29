@@ -154,6 +154,15 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     }
 
     @Override
+    public Solicitud consultarSiguienteSolicitud() {
+        if (colaSolicitudes.isEmpty()) {
+            System.out.println("No hay solicitudes pendientes.");
+            return null;
+        }
+        return colaSolicitudes.peek(); 
+    }
+
+    @Override
     public void atenderSiguienteSolicitud() {
         if (colaSolicitudes.isEmpty()) {
             System.out.println("No hay solicitudes pendientes");
