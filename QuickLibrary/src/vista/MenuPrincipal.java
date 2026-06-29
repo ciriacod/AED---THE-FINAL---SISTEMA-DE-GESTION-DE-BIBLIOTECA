@@ -1,5 +1,6 @@
 package vista;
 
+import java.util.Date;
 import java.util.Scanner;
 
 import controladores.gestor.GestorBiblioteca;
@@ -9,84 +10,205 @@ import modelos.Libro;
 import modelos.Solicitud;
 
 public class MenuPrincipal {
-    private static Scanner scanner = new Scanner(System.String.getScanner() != null ? System.getScanner() : new Scanner(System.in));
-    private GestorBiblioteca<>
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final ArbolAVL<Libro> arbolLibros = new ArbolAVL<>();
+    private static final LinkedQueue<Solicitud> colaSolicitudes = new LinkedQueue<>();
 
+    private static final GestorBiblioteca gestor =
+            new GestorBiblioteca(arbolLibros, colaSolicitudes);
+    
     public static void main(String[] args) {
-        int opcion = 0;
-        do {
-            try {
-                mostrarMenu();
-                System.out.print("Seleccione una opción: ");
-                opcion = Integer.parseInt(scanner.nextLine());
+        gestor.cargarDatosIniciales();
+        int opcion;
 
+        do {
+            mostrarMenu();
+            System.out.print("\nSeleccione una opción: ");
+
+            try {
+                opcion = Integer.parseInt(scanner.nextLine());
                 switch (opcion) {
+
                     case 1:
                         registrarLibro();
                         break;
+
                     case 2:
-                        System.out.println("\n CATÁLOGO DE LIBROS ");
-                        bstLibros.inOrder();
+                        mostrarLibros();
                         break;
+
                     case 3:
-                        buscarLibroPorCodigo();
+                        buscarLibro();
                         break;
+
+                    case 4:
+                        buscarCategoria();
+                        break;
+
+                    case 5:
+                        modificarLibro();
+                        break;
+
+                    case 6:
+                        eliminarLibro();
+                        break;
+
                     case 7:
                         registrarSolicitud();
                         break;
+
                     case 8:
-                        System.out.println("\n COLA DE SOLICITUDES PENDIENTES");
-                        colaSolicitudes.mostrar();
+                        mostrarSolicitudes();
                         break;
+
+                    case 9:
+                        atenderSolicitud();
+                        break;
+
+                    case 10:
+                        registrarDevolucion();
+                        break;
+
                     case 11:
                         mostrarReporte();
                         break;
+
                     case 12:
-                        System.out.println("Saliendo de QuickLibrary...");
+                        salir();
                         break;
+
                     default:
-                        System.out.println("Opción no válida o aún en desarrollo por el equipo.");
+                        System.out.println("Opción inválida.");
+
                 }
-            } catch (NumberFormatException e) {
-                System.out.println("Error: Se solicita ingresar un número válido.");
+
+            } catch (Exception e) {
+                System.out.println("Debe ingresar un número válido.");
+                opcion = 0;
+
             }
-            System.out.println("\nPresione Enter para continuar...");
-            scanner.nextLine();
+            if (opcion != 12) {
+                System.out.println("\nPresione ENTER para continuar...");
+                scanner.nextLine();
+            }
         } while (opcion != 12);
     }
 
     private static void mostrarMenu() {
-        System.out.println("          QUICKLIBRARY           ");
+
+        System.out.println("    QUICK LIBRARY    ");
         System.out.println("1. Registrar libro");
         System.out.println("2. Mostrar libros");
         System.out.println("3. Buscar libro por código");
         System.out.println("4. Buscar libros por categoría");
         System.out.println("5. Modificar libro");
         System.out.println("6. Eliminar libro");
-        System.out.println("7. Registrar solicitud de préstamo");
-        System.out.println("8. Mostrar cola de solicitudes");
-        System.out.println("9. Atender siguiente solicitud");
+        System.out.println("7. Registrar solicitud");
+        System.out.println("8. Mostrar cola");
+        System.out.println("9. Atender solicitud");
         System.out.println("10. Registrar devolución");
         System.out.println("11. Mostrar reporte");
         System.out.println("12. Salir");
+
     }
+
     private static void registrarLibro() {
-        System.out.println("\n REGISTRAR NUEVO LIBRO");
-        System.out.print("Código numerico: ");
+
+        System.out.println("\n REGISTRAR LIBRO ");
+
+        System.out.print("Código: ");
         int codigo = Integer.parseInt(scanner.nextLine());
-        
-        System.out.print("Título: ");
+
+        System.out.print("Titulo: ");
         String titulo = scanner.nextLine();
+
         System.out.print("Autor: ");
         String autor = scanner.nextLine();
+
         System.out.print("Categoria: ");
         String categoria = scanner.nextLine();
-        System.out.print("Año de publicación: ");
+
+        System.out.print("Anio: ");
         int anio = Integer.parseInt(scanner.nextLine());
 
-        Libro nuevoLibro = new Libro(codigo, titulo, autor, categoria, anio, "Disponible");
-        bstLibros.insert(nuevoLibro);
-        System.out.println("Libro guardado exitosamente");
+        Libro libro = new Libro(codigo, titulo, autor, categoria, anio);
+
+        gestor.registrarLibro(libro);
     }
-    
+
+    private static void mostrarLibros() {
+
+        System.out.println("\n CATALOGO ");
+
+        arbolLibros.inOrden();
+
+    }
+
+    private static void buscarLibro() {
+
+        System.out.println("\n BUSCAR LIBRO ");
+
+        System.out.print("Código: ");
+        int codigo = Integer.parseInt(scanner.nextLine());
+
+        Libro libro = gestor.buscarLibroPorCodigo(codigo);
+
+        if (libro == null) {
+
+            System.out.println("Libro no encontrado.");
+
+        } else {
+            System.out.println(libro);
+        }
+    }
+    private static void buscarCategoria() {
+        System.out.println("\nFuncion pendiente.");
+    }
+    private static void modificarLibro() {
+        System.out.println("\nFuncion pendiente.");
+    }
+    private static void eliminarLibro() {
+        System.out.println("\nFunción pendiente.");
+    }
+
+    private static void registrarSolicitud() {
+        System.out.println("\n NUEVA SOLICITUD ");
+        System.out.print("Codigo estudiante: ");
+        String codigo = scanner.nextLine();
+
+        System.out.print("Nombre estudiante: ");
+        String nombre = scanner.nextLine();
+
+        System.out.print("Codigo del libro: ");
+        int codigoLibro = Integer.parseInt(scanner.nextLine());
+
+        Solicitud solicitud =
+                new Solicitud(codigo, nombre, codigoLibro, new Date());
+        gestor.registrarSolicitud(solicitud);
+
+    }
+
+    private static void mostrarSolicitudes() {
+        System.out.println("\n SOLICITUDES ");
+        colaSolicitudes.mostrar();
+    }
+    private static void atenderSolicitud() {
+        gestor.atenderSiguienteSolicitud();
+    }
+
+    private static void registrarDevolucion() {
+        System.out.println("\n DEVOLUCION ");
+        System.out.print("Codigo del libro: ");
+        int codigo = Integer.parseInt(scanner.nextLine());
+        gestor.registrarDevolucion(codigo);
+    }
+
+    private static void mostrarReporte() {
+        gestor.generarReporteEstadistico();
+    }
+
+    private static void salir() {
+        gestor.guardarDatos();
+        System.out.println("\nGracias por usar QuickLibrary.");
+    }
 }
