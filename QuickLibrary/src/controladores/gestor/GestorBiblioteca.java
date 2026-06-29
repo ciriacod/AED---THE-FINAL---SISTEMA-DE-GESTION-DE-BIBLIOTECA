@@ -5,6 +5,7 @@ import controladores.interfaces.IPrestamoControlador;
 import controladores.interfaces.IReporteControlador;
 import estructuras.ArbolAVL;
 import estructuras.LinkedQueue;
+import estructuras.NodoAVL;
 import modelos.Libro;
 import modelos.Solicitud;
 import persistencia.GestorCSV;
@@ -111,6 +112,26 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     public Libro buscarLibroPorCodigo(int codigo) {
         Libro actual = new Libro(codigo, "", "", "", 0);  // Vacio por siaca
         return catalogoLibros.buscar(actual);
+    }
+
+    @Override
+    
+    public void buscarLibroPorTitulo(String titulo) {
+        buscarLibroPorTitulo(catalogoLibros.getRaiz(), titulo);
+    }
+
+    private void buscarLibroPorTitulo(NodoAVL<Libro> nodo, String titulo) {
+
+        if (nodo == null)
+            return;
+
+        buscarLibroPorTitulo(nodo.getIzquierdo(), titulo);
+
+        if (nodo.getDato().getTitulo().equalsIgnoreCase(titulo)) {
+            System.out.println(nodo.getDato());
+        }
+
+        buscarLibroPorTitulo(nodo.getDerecho(), titulo);
     }
 
     @Override
