@@ -77,7 +77,23 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
             return;
         }
         System.out.println("\n--- CATÁLOGO COMPLETO ---");
+        // Accion del AVL
         catalogoLibros.recorridoInorden(); // Muestra ordenados por código ascendentemente
+    }
+
+    @Override
+    public void modificarLibro(int codigo, String nuevoTitulo, String nuevoAutor, String nuevaCategoria, int nuevoAnio) {
+        Libro libro = buscarLibroPorCodigo(codigo);
+        if (libro == null) {
+            System.out.println("El libro con código " + codigo + " no existe.");
+            return;
+        }
+        
+        libro.setTitulo(nuevoTitulo);
+        libro.setAutor(nuevoAutor);
+        libro.setCategoria(nuevaCategoria);
+        libro.setAnio(nuevoAnio);
+        System.out.println("Datos del libro modificados exitosamente.");
     }
 
     @Override
