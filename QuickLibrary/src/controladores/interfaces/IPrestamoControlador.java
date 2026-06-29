@@ -4,6 +4,8 @@ import modelos.Solicitud;
 
 public interface IPrestamoControlador {
     void registrarSolicitud(Solicitud solicitud);
+    void mostrarColaSolicitudes();
+    Solicitud consultarSiguienteSolicitud();
     void atenderSiguienteSolicitud();
-    void registrarDevolucion(int codigoLibro);
+    // Faltaria el metodo para Eliminar una solicitud atendida de la cola
 }
