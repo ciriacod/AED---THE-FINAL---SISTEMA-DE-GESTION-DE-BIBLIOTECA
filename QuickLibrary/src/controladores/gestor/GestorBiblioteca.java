@@ -108,23 +108,10 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     }
 
     @Override
-    public void mostrarLibrosPorEstado(String estado) {
-        System.out.println("\n--- LIBROS EN ESTADO: " + estado.toUpperCase() + " ---");
-        catalogoLibros.mostrarPorEstado(estado); 
-    }
-
-    @Override
     public Libro buscarLibroPorCodigo(int codigo) {
         Libro actual = new Libro(codigo, "", "", "", 0);  // Vacio por siaca
         return catalogoLibros.buscar(actual);
     }
-
-    @Override
-    public void buscarLibrosPorCriterio(String criterio, String valor) {
-        System.out.println("\n--- RESULTADOS DE BÚSQUEDA POR " + criterio.toUpperCase() + " ---");
-        catalogoLibros.buscarPorCriterio(criterio, valor);
-
-    // === Modulo IPrestamoControlador ===
 
     @Override
     public void registrarSolicitud(Solicitud solicitud) {
