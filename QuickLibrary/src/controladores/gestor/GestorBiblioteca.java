@@ -155,4 +155,41 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         System.out.println("========================================");
         // por aca se hara el reporte segun el metodo de busqda de arbol usen (inorden-preorden-postorden) o si quieren por pdf no se ya ven ustedes eso xd
     }
+
+    @Override
+    public void mostrarColaSolicitudes() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'mostrarColaSolicitudes'");
+    }
+
+    @Override
+    public Solicitud consultarSiguienteSolicitud() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'consultarSiguienteSolicitud'");
+    }
+
+    @Override
+    public void modificarLibro(int codigo, String nuevoTitulo, String nuevoAutor, String nuevaCategoria,
+            int nuevoAnio) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'modificarLibro'");
+    }
+
+    @Override
+    public void eliminarLibro(int codigo) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'eliminarLibro'");
+    }
+
+    @Override
+    public void mostrarLibrosPorEstado(String estado) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'mostrarLibrosPorEstado'");
+    }
+
+    @Override
+    public void buscarLibrosPorCriterio(String criterio, String valor) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarLibrosPorCriterio'");
+    }
 }
