@@ -184,14 +184,54 @@ public class MenuPrincipal {
     }
     private static void buscarCategoria() {
 
-        System.out.println("\n BUSCAR LIBROS POR CATEGORIA ");
+    System.out.println("\n--- CRITERIOS DE BÚSQUEDA ---");
+    System.out.println("1. Buscar por categoría");
+    System.out.println("2. Buscar por título");
+    System.out.println("3. Buscar por autor");
+    System.out.println("4. Mostrar disponibles");
+    System.out.println("5. Mostrar prestados");
 
-        System.out.print("Categoria: ");
-        String categoria = scanner.nextLine();
+    System.out.print("Seleccione una opción: ");
 
-        gestor.buscarLibroPorCategoria(categoria);
+    try {
 
+        int opcion = Integer.parseInt(scanner.nextLine());
+
+        switch (opcion) {
+
+            case 1:
+                System.out.print("Categoría: ");
+                gestor.buscarLibroPorCategoria(scanner.nextLine());
+                break;
+
+            case 2:
+                System.out.print("Título: ");
+                gestor.buscarLibroPorTitulo(scanner.nextLine());
+                break;
+
+            case 3:
+                System.out.print("Autor: ");
+                gestor.buscarLibroPorAutor(scanner.nextLine());
+                break;
+
+            case 4:
+                System.out.println("\nLIBROS DISPONIBLES\n");
+                gestor.mostrarLibrosDisponibles();
+                break;
+
+            case 5:
+                System.out.println("\nLIBROS PRESTADOS\n");
+                gestor.mostrarLibrosPrestados();
+                break;
+
+            default:
+                System.out.println("Opción inválida.");
+        }
+
+    } catch (NumberFormatException e) {
+        System.out.println("Debe ingresar un número.");
     }
+
     private static void modificarLibro() {
 
         System.out.println("\n MODIFICAR LIBRO ");
@@ -280,9 +320,32 @@ public class MenuPrincipal {
     }
 
     private static void mostrarReporte() {
-        gestor.generarReporteEstadistico();
-    }
 
+    gestor.generarReporteEstadistico();
+
+    System.out.print("\n¿Desea exportar el catálogo? (S/N): ");
+    String respuesta = scanner.nextLine();
+
+    if (respuesta.equalsIgnoreCase("S")) {
+
+        System.out.print("Nombre del archivo: ");
+        String nombre = scanner.nextLine().trim();
+
+        if (nombre.toLowerCase().endsWith(".csv")) {
+            nombre = nombre.substring(0, nombre.length() - 4);
+        }
+
+        if (!nombre.isEmpty()) {
+
+            gestor.exportarDatos(nombre);
+
+            System.out.println("Archivo exportado correctamente.");
+
+        } else {
+            System.out.println("Nombre inválido.");
+        }
+    }
+        
     private static void buscarTitulo() {
         System.out.println("\n BUSCAR POR TITULO ");
         System.out.print("Titulo: ");
