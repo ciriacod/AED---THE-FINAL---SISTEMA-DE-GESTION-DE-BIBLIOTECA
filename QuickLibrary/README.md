@@ -11,7 +11,42 @@ Bienvenido al Manual de Usuario de **QuickLibrary**, una aplicación de consola 
 ### Requisitos del Sistema
 
 - Java JDK 8 o superior.
-- Consola de comandos (Terminal, CMD o PowerShell) o la terminal integrada de un IDE compatible (IntelliJ IDEA, Eclipse, NetBeans o Visual Studio Code).
+- Un entorno de desarrollo compatible con Java (IntelliJ IDEA, Eclipse, NetBeans o Visual Studio Code).
+- Git (opcional, únicamente si desea clonar el repositorio).
+
+### Instalación
+
+Existen dos formas de obtener el proyecto.
+
+### Opción 1: Clonar el repositorio
+
+#### Usando Git
+
+Abra una terminal y ejecute:
+
+```bash
+git clone https://github.com/ciriacod/AED---THE-FINAL---SISTEMA-DE-GESTION-DE-BIBLIOTECA.git
+```
+
+#### Usando GitHub CLI
+
+Si tiene instalada la **GitHub CLI**, también puede clonar el repositorio con:
+
+```bash
+gh repo clone ciriacod/AED---THE-FINAL---SISTEMA-DE-GESTION-DE-BIBLIOTECA
+```
+
+Una vez descargado el proyecto, ingrese a la carpeta **QuickLibrary** y ábrala con su IDE de preferencia.
+
+#### Opción 2: Descargar el proyecto en formato ZIP
+
+1. Ingrese al repositorio de GitHub.
+2. Haga clic en el botón **Code**.
+3. Seleccione la opción **Download ZIP**.
+4. Extraiga el contenido del archivo ZIP en la ubicación deseada.
+5. Abra la carpeta del proyecto con su IDE de preferencia.
+
+---
 
 ### Inicio Rápido
 
