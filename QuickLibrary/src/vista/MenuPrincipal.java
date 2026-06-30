@@ -27,7 +27,6 @@ public class MenuPrincipal {
             try {
                 opcion = Integer.parseInt(scanner.nextLine());
                 switch (opcion) {
-
                     case 1:
                         registrarLibro();
                         break;
@@ -35,50 +34,69 @@ public class MenuPrincipal {
                     case 2:
                         mostrarLibros();
                         break;
-
+                
                     case 3:
                         buscarLibro();
                         break;
-
+                
                     case 4:
                         buscarCategoria();
                         break;
-
+                
                     case 5:
                         modificarLibro();
                         break;
-
+                
                     case 6:
                         eliminarLibro();
                         break;
-
+                
                     case 7:
                         registrarSolicitud();
                         break;
-
+                
                     case 8:
                         mostrarSolicitudes();
                         break;
-
+                
                     case 9:
                         atenderSolicitud();
                         break;
-
+                
                     case 10:
                         registrarDevolucion();
                         break;
-
+                
                     case 11:
                         mostrarReporte();
                         break;
-
+                
                     case 12:
+                        buscarTitulo();
+                        break;
+                
+                    case 13:
+                        buscarAutor();
+                        break;
+                
+                    case 14:
+                        mostrarDisponibles();
+                        break;
+                
+                    case 15:
+                        mostrarPrestados();
+                        break;
+                
+                    case 16:
+                        exportarCSV();
+                        break;
+                
+                    case 17:
                         salir();
                         break;
-
+                
                     default:
                         System.out.println("Opción inválida.");
-
                 }
 
             } catch (Exception e) {
@@ -95,21 +113,29 @@ public class MenuPrincipal {
 
     private static void mostrarMenu() {
 
-        System.out.println("    QUICK LIBRARY    ");
-        System.out.println("1. Registrar libro");
-        System.out.println("2. Mostrar libros");
-        System.out.println("3. Buscar libro por código");
-        System.out.println("4. Buscar libros por categoría");
-        System.out.println("5. Modificar libro");
-        System.out.println("6. Eliminar libro");
-        System.out.println("7. Registrar solicitud");
-        System.out.println("8. Mostrar cola");
-        System.out.println("9. Atender solicitud");
-        System.out.println("10. Registrar devolución");
-        System.out.println("11. Mostrar reporte");
-        System.out.println("12. Salir");
+    System.out.println("\n==========================================");
+    System.out.println("         QUICK LIBRARY");
+    System.out.println("==========================================");
+    System.out.println(" 1. Registrar libro");
+    System.out.println(" 2. Mostrar todos los libros");
+    System.out.println(" 3. Buscar libro por código");
+    System.out.println(" 4. Buscar libros por categoría");
+    System.out.println(" 5. Modificar libro");
+    System.out.println(" 6. Eliminar libro");
+    System.out.println(" 7. Registrar solicitud");
+    System.out.println(" 8. Mostrar cola de solicitudes");
+    System.out.println(" 9. Atender siguiente solicitud");
+    System.out.println("10. Registrar devolución");
+    System.out.println("11. Mostrar reporte");
+    System.out.println("12. Buscar por título");
+    System.out.println("13. Buscar por autor");
+    System.out.println("14. Mostrar libros disponibles");
+    System.out.println("15. Mostrar libros prestados");
+    System.out.println("16. Exportar catálogo CSV");
+    System.out.println("17. Salir");
+    System.out.println("==========================================");
 
-    }
+}
 
     private static void registrarLibro() {
 
