@@ -51,7 +51,7 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
     
     // test exportacion
     public void exportarDatos(String ruta){
-        new GestorCSV(ruta).guardarLibros(catalogoLibros);
+        new GestorCSV(ruta+".csv").guardarLibros(catalogoLibros);
     }
 
     // === Modulo ILibroControlador ===
@@ -111,8 +111,14 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
             System.out.println("No se puede eliminar. El libro no existe.");
             return;
         }
-        catalogoLibros.eliminar(libro);
-        System.out.println("Libro eliminado: " + libro.getTitulo());
+
+        if (libro.getStock()>1) {
+            libro.setStock(libro.getStock()-1);
+            System.out.println("1 libro eliminado de stock");
+        } else {
+            catalogoLibros.eliminar(libro);
+            System.out.println("Libro eliminado: " + libro.getTitulo());
+        }
     }
 
     @Override

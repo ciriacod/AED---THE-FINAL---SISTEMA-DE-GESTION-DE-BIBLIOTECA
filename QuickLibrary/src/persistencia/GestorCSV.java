@@ -34,15 +34,16 @@ public class GestorCSV {
                     continue;
                 }
                 String[] campos = linea.split(",");
-                if (campos.length >= 5) {
+                if (campos.length >= 6) {
                     int codigo = Integer.parseInt(campos[0].trim());
                     String titulo = campos[1].trim();
                     String autor = campos[2].trim();
                     String categoria = campos[3].trim();
                     int anio = Integer.parseInt(campos[4].trim());
+                    int stock = Integer.parseInt(campos[5].trim());
 
-                    if (campos.length >= 6) {
-                        String estado = campos[5].replace(";", "").trim();
+                    if (campos.length >= 7) {
+                        String estado = campos[6].replace(";", "").trim();
                         libros.enqueue(
                                 new Libro(
                                         codigo,
@@ -50,7 +51,8 @@ public class GestorCSV {
                                         autor,
                                         categoria,
                                         anio,
-                                        estado
+                                        estado,
+                                        stock
                                 )
                         );
                     } else {
@@ -84,12 +86,13 @@ public class GestorCSV {
 
             while (!cola.isEmpty()) {
                 Libro libro = cola.dequeue();
-                bw.write(String.format("%d,%s,%s,%s,%d,%s",
+                bw.write(String.format("%d,%s,%s,%s,%d,%d,%s",
                         libro.getCodigo(),
                         libro.getTitulo(),
                         libro.getAutor(),
                         libro.getCategoria(),
                         libro.getAnio(),
+                        libro.getStock(),
                         libro.getEstado()));
                 bw.newLine();
             }

@@ -17,14 +17,14 @@ public class Libro implements Comparable<Libro> {
         this.estado = "Disponible";
         this.stock = 1;
     }
-    public Libro(int codigo, String titulo, String autor, String categoria, int anio, String estado) {
+    public Libro(int codigo, String titulo, String autor, String categoria, int anio, String estado, int stock) {
         this.codigo = codigo;
         this.titulo = titulo;
         this.autor = autor;
         this.categoria = categoria;
         this.anio = anio;
         this.estado = estado;
-        this.stock = 1;
+        this.stock = stock;
     }
     public Libro(int codigo) {
         this.codigo = codigo;
