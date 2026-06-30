@@ -19,8 +19,8 @@ public class GestorCSV {
         this.rutaPredeterminada = Paths.get(rutaPredeterminada);
     }
 
-    public LinkedQueue<Libro> cargarLibros() {
-        LinkedQueue<Libro> libros = new LinkedQueue<>();
+    public ArbolAVL<Libro> cargarLibros() {
+        ArbolAVL<Libro> libros = new ArbolAVL<>();
         if (!Files.exists(rutaPredeterminada)) {
             return libros;
         }
@@ -44,7 +44,7 @@ public class GestorCSV {
 
                     if (campos.length >= 7) {
                         String estado = campos[6].replace(";", "").trim();
-                        libros.enqueue(
+                        libros.insertar(
                                 new Libro(
                                         codigo,
                                         titulo,
@@ -56,7 +56,7 @@ public class GestorCSV {
                                 )
                         );
                     } else {
-                        libros.enqueue(
+                        libros.insertar(
                                 new Libro(
                                         codigo,
                                         titulo,

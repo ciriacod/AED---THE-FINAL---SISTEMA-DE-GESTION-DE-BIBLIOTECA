@@ -264,5 +264,9 @@ public class ArbolAVL<E extends Comparable<E>>{
     public NodoAVL<E> getRaiz() {
         return raiz;
     }
+
+    public void setRaiz(NodoAVL<E> newRoot){
+        this.raiz = newRoot;
+    }
 }
 

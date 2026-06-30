@@ -32,16 +32,8 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
 
     // Metodo para la carga de libros iniciales
     public void cargarDatosIniciales(){
-        LinkedQueue<Libro> librosCargados = gestorCSV.cargarLibros();
-
-        int cont = 0;
-        while (!librosCargados.isEmpty()) {
-            Libro libro = librosCargados.dequeue();
-            registrarLibro(libro);
-            cont++;
-        }
-
-        System.out.println("Libros cargados: " + cont);
+        ArbolAVL<Libro> librosCargados = gestorCSV.cargarLibros();
+        catalogoLibros.setRaiz(librosCargados.getRaiz());
     }
 
     // Metodo para la guardar de libros
