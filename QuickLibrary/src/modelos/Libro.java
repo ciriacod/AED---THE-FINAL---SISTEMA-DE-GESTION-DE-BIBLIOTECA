@@ -81,8 +81,8 @@ public class Libro implements Comparable<Libro> {
 
     @Override
     public String toString(){
-        return String.format("ID: %d | %s - %s [%s] (%d) -> %s",
-            codigo, titulo, autor, categoria, anio, estado
+        return String.format("ID: %d | %s - %s [%s] (%d) -> %s Stock: %s",
+            codigo, titulo, autor, categoria, anio, estado, stock
         );
     }
     @Override

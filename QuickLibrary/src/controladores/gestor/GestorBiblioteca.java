@@ -65,6 +65,7 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         // El arbol se encarga de buscar si ya existe el codigo internamente de igual manera se validara aqui
         if (buscarLibroPorCodigo(libro.getCodigo()) != null) {
             System.out.println("Libro duplicado");
+            catalogoLibros.buscar(libro).setStock(catalogoLibros.buscar(libro).getStock()+1);
             return;
         }
         catalogoLibros.insertar(libro);
@@ -240,6 +241,8 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
         return contarPorEstado(catalogoLibros.getRaiz(),"Prestado");
 
     }
+
+//---------------------------Solicitudes---------------------------------------
 
     @Override
     public void registrarSolicitud(Solicitud solicitud) {

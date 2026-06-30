@@ -108,9 +108,4 @@ public class GestorCSV {
         cola.enqueue(nodo.getDato());
         convertirAVLCola(nodo.getDerecho(), cola);
     }
-
-    public static void main(String[] args) {
-        LinkedQueue<Libro> libreriatest = new GestorCSV("test.csv").cargarLibros();
-        libreriatest.mostrar();
-    }
 }
