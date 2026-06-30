@@ -63,11 +63,17 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
             return;
         }
         // El arbol se encarga de buscar si ya existe el codigo internamente de igual manera se validara aqui
-        if (buscarLibroPorCodigo(libro.getCodigo()) != null) {
-            System.out.println("Libro duplicado");
-            catalogoLibros.buscar(libro).setStock(catalogoLibros.buscar(libro).getStock()+1);
+        Libro libroExistente = buscarLibroPorCodigo(libro.getCodigo());
+        if (libroExistente != null) {
+            libroExistente.setStock(libroExistente.getStock() + libro.getStock());
+            // Si el libro estaba agotado ("Prestado") y se añade stock, vuelve a estar disponible
+            if (libroExistente.getStock() > 0) {
+                libroExistente.setEstado("Disponible");
+            }
+            System.out.println("Libro ya existente. Se incrementó el stock a: " + libroExistente.getStock());
             return;
         }
+        
         catalogoLibros.insertar(libro);
         System.out.println("Libro registrado: " + libro.getTitulo());
     }
