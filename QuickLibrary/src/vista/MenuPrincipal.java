@@ -104,11 +104,11 @@ public class MenuPrincipal {
                 opcion = 0;
 
             }
-            if (opcion != 12) {
+            if (opcion != 17){
                 System.out.println("\nPresione ENTER para continuar...");
                 scanner.nextLine();
             }
-        } while (opcion != 12);
+        } while (opcion != 17);
     }
 
     private static void mostrarMenu() {
@@ -283,6 +283,38 @@ public class MenuPrincipal {
         gestor.generarReporteEstadistico();
     }
 
+    private static void buscarTitulo() {
+        System.out.println("\n BUSCAR POR TITULO ");
+        System.out.print("Titulo: ");
+        String titulo = scanner.nextLine();
+        
+        gestor.buscarLibroPorTitulo(titulo);
+    }
+    private static void buscarAutor() {
+        System.out.println("\n BUSCAR POR AUTOR ");
+        System.out.print("Autor: ");
+        String autor = scanner.nextLine();
+            
+        gestor.buscarLibroPorAutor(autor);
+    
+    }
+    private static void mostrarDisponibles() {
+        System.out.println("\n LIBROS DISPONIBLES\n");
+        gestor.mostrarLibrosDisponibles();
+    
+    }
+    private static void mostrarPrestados() {
+        System.out.println("\n LIBROS PRESTADOS\n");
+        gestor.mostrarLibrosPrestados();
+    }
+    private static void exportarCSV() {
+        System.out.println("\n EXPORTAR CATALOGO ");
+        System.out.print("Nombre del archivo (sin .csv): ");
+        String nombre = scanner.nextLine();
+        gestor.exportarDatos(nombre);
+        System.out.println("Archivo exportado correctamente.");
+    
+    }
     private static void salir() {
         gestor.guardarDatos();
         System.out.println("\nGracias por usar QuickLibrary.");
