@@ -230,7 +230,7 @@ public class MenuPrincipal {
 
     } catch (NumberFormatException e) {
         System.out.println("Debe ingresar un número.");
-    }
+    }}
 
     private static void modificarLibro() {
 
@@ -343,7 +343,7 @@ public class MenuPrincipal {
 
         } else {
             System.out.println("Nombre inválido.");
-        }
+        }}
     }
         
     private static void buscarTitulo() {
