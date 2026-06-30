@@ -313,6 +313,7 @@ public class GestorBiblioteca implements ILibroControlador, IPrestamoControlador
             libro.setStock(libro.getStock() - 1);
         } else {
             System.out.println("OPERACIÓN RECHAZADA: El libro '" + libro.getTitulo() + "' ya se encuentra prestado.");
+            colaSolicitudes.enqueue(siguienteSol);
         }
     }
 
