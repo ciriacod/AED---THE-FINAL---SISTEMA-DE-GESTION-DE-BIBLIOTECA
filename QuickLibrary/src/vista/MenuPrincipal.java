@@ -320,9 +320,32 @@ public class MenuPrincipal {
     }
 
     private static void mostrarReporte() {
-        gestor.generarReporteEstadistico();
-    }
 
+    gestor.generarReporteEstadistico();
+
+    System.out.print("\n¿Desea exportar el catálogo? (S/N): ");
+    String respuesta = scanner.nextLine();
+
+    if (respuesta.equalsIgnoreCase("S")) {
+
+        System.out.print("Nombre del archivo: ");
+        String nombre = scanner.nextLine().trim();
+
+        if (nombre.toLowerCase().endsWith(".csv")) {
+            nombre = nombre.substring(0, nombre.length() - 4);
+        }
+
+        if (!nombre.isEmpty()) {
+
+            gestor.exportarDatos(nombre);
+
+            System.out.println("Archivo exportado correctamente.");
+
+        } else {
+            System.out.println("Nombre inválido.");
+        }
+    }
+        
     private static void buscarTitulo() {
         System.out.println("\n BUSCAR POR TITULO ");
         System.out.print("Titulo: ");
