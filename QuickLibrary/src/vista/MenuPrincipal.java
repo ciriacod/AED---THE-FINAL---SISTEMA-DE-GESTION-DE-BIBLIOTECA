@@ -136,11 +136,7 @@ public class MenuPrincipal {
     }
 
     private static void mostrarLibros() {
-
-        System.out.println("\n CATALOGO ");
-
-        arbolLibros.inOrden();
-
+        gestor.mostrarTodosLosLibros();
     }
 
     private static void buscarLibro() {
